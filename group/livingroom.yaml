@@ -1,0 +1,23 @@
+livingroom:
+  view: yes
+  name: Obývák
+  entities:
+    - group.livingroomlights
+    - group.palm_moisture
+    - sensor.living_temp
+    - media_player.lg_tv_remote
+    - media_player.kodi
+
+livingroomlights:
+  name: Světla
+  entities:
+    - light.obyvak
+    - light.obyvak_lampa
+
+
+palm_moisture:
+  name: Palma
+  entities:  
+    - sensor.palm_moisture
+    - sensor.palm_conductivity
+    - sensor.palm_light_intensity

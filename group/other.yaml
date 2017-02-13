@@ -1,0 +1,27 @@
+other:
+  name: Ostatní
+  view: yes
+  entities:
+    - device_tracker.marcelka
+    - device_tracker.pavel
+    - device_tracker.room_pc
+    - group.batteries
+    - group.system
+    - group.all_lights
+
+batteries:
+  name: Baterie
+  entities:
+    - sensor.palm_battery
+    - sensor.living_temp_batteries
+    - sensor.bedroom_temp_batteries
+
+system:
+  name: Systém
+  entities:
+    - sensor.since_last_boot_templated
+    - sensor.ram_use
+    - sensor.cpu_use
+    - sensor.speedtest_ping
+    - sensor.speedtest_download
+    - sensor.speedtest_upload

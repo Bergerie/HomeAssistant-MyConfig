@@ -1,0 +1,35 @@
+- alias: in temp changed
+  trigger:
+    platform: state
+    entity_id: sensor.myslipo_1_0
+  condition:
+    - condition: template
+      value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
+  action:
+    service: mqtt.publish
+    data_template:
+      topic: "display"
+      qos: 1
+      payload: >-
+        {%- set in_temp = states.sensor.myslipo_1_0.state -%}
+        {%- if in_temp is not none and in_temp != "unavailable" -%}
+          {in_temp: {{ in_temp }} }
+        {%- endif -%}
+
+- alias: weather icon changed
+  trigger:
+    platform: state
+    entity_id: sensor.yr_symbol
+  condition:
+    - condition: template
+      value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
+  action:
+    service: mqtt.publish
+    data_template:
+      topic: "display/weather"
+      qos: 1
+      payload: >-
+        {%- set symbol = states.sensor.yr_symbol.state -%}
+        {%- if symbol is not none and symbol != "unavailable" -%}
+          {icon: {{ symbol }} }
+        {%- endif -%}

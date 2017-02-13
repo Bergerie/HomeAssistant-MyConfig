@@ -1,0 +1,33 @@
+channel:
+  name: Program
+  options:
+    - CT 1 HD
+    - CT 2 HD
+    - Nova HD
+    - Prima HD
+    - Prima +1 HD
+    - CT 24 HD
+    - CT :D/art HD
+    - Nova Cinema HD
+    - FANDA HD
+    - TELKA
+    - SMICHOV
+    - Prima COOL HD
+    - Prima Love
+    - Prima Zoom HD
+    - TV Barrandov HD
+    - Kino Barrandov HD
+    - Barrandov Plus HD
+    - KinoSvet
+    - Markiza International
+    - Mnam TV
+    - STV1 HD
+    - STV2 HD
+    - Markiza HD
+    - JOJ Family HD
+    - JOJ PLUS HD
+    - DOMA HD
+    - DAJTO HD
+    - WAU HD
+  initial: Nova HD
+  icon: mdi:television-guide

@@ -1,0 +1,16 @@
+- platform: mysensors
+
+- platform: template
+  sensors:
+    # living_temp:
+    #   value_template: '{{ states.sensor.myslipo_1_0.attributes["V_TEMP"] }}'
+    #   friendly_name: 'Teplota'
+    #   unit_of_measurement: '°C'
+    living_temp_batteries:
+      value_template: '{{ "%0.1f"| format(states.sensor.myslipo_1_0.attributes["battery_level"]|float /10) }}'
+      friendly_name: 'Teploměr obývák'
+      unit_of_measurement: 'V'
+    bedroom_temp_batteries:
+      value_template: '{{ "%0.1f"| format(states.sensor.myslipo_2_0.attributes["battery_level"]|float /10) }}'
+      friendly_name: 'Teploměr ložnice'
+      unit_of_measurement: 'V'

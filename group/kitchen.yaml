@@ -1,0 +1,10 @@
+kitchen:
+  view: yes
+  name: Kuchyně
+  entities:
+    - group.kitchenlights
+
+kitchenlights:
+  name: Světla
+  entities:
+    - light.kuchyne

@@ -1,0 +1,10 @@
+room:
+  view: yes
+  name: Pokoj
+  entities:
+    - group.roomlights
+
+roomlights:
+  name: Světla
+  entities:
+    - light.pokoj

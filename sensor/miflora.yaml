@@ -1,0 +1,8 @@
+- platform: miflora
+  mac: "C4:7C:8D:62:4D:4F"
+  monitored_conditions:
+    - moisture
+    - conductivity
+    - battery
+    - light
+  name: palm

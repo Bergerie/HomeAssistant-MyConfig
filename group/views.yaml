@@ -1,0 +1,7 @@
+# default_view:
+#  view: yes
+#  entities:
+#    - device_tracker.marcelka
+#    - device_tracker.pavel
+#    - sensor.yr_symbol
+#    - sun.sun

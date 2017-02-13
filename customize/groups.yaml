@@ -1,0 +1,20 @@
+- entity_id: group.speedtest
+  friendly_name: 'Rychlost internetu'
+
+- entity_id: group.livingroom
+  order: 1
+
+- entity_id: group.bedroom
+  order: 2
+
+- entity_id: group.room
+  order: 3
+
+- entity_id: group.kitchen
+  order: 4
+  
+- entity_id: group.hall
+  order: 5
+
+- entity_id: group.other
+  order: 6

@@ -1,0 +1,115 @@
+homeassistant:
+  name: Home
+  latitude: !secret latitude_home
+  longitude: !secret longitude_home
+  elevation: 387
+  unit_system: metric
+  time_zone: Europe/Prague
+  customize: !include_dir_merge_list customize
+
+frontend:
+http:
+updater:
+conversation:
+sun:
+
+history:
+  exclude:
+    entities:
+      - sensor.since_last_boot
+      - sensor.since_last_boot_templated
+      - sensor.living_temp_updated
+    domains:
+      - automation
+      - group
+# View all events in a logbook
+logbook:
+  exclude:
+    entities:
+      - sensor.since_last_boot
+      - sensor.since_last_boot_templated
+      - sensor.living_temp_updated
+      - sensor.ram_use
+      - sensor.cpu_use
+      - automation.in_temp_changed
+    domains:
+      - sun
+
+# logger:
+#  default: warning
+#  logs:
+#     homeassistant.components.mysensors: debug
+#     mysensors.mysensors: debug
+#     homeassistant.components.rflink: debug
+
+zone cottage:
+  name: Chalupa
+  latitude: !secret latitude_cottage
+  longitude: !secret longitude_cottage
+  radius: 200
+  icon: mdi:home
+
+# Text to speech
+tts:
+  platform: google
+  cache: true
+  cache_dir: /home/homeassistant/.homeassistant/tts
+  time_memory: 300
+
+#################################
+###       COMPONENTS          ###
+#################################
+
+media_player kodi:
+  - platform: kodi
+    host: 192.168.1.105
+    turn_off_action: shutdown
+
+media_player tv:
+  - platform: lg_netcast
+    host: 192.168.1.106
+    access_token: !secret tv_token
+
+mqtt:
+  broker: localhost
+  port: 1883
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  client_id: home
+
+device_tracker:
+  - platform: nmap_tracker
+    hosts: 192.168.1.1/24
+    home_interval: 10
+
+#lirc:
+
+mysensors:
+  gateways:
+    - device: mqtt
+      persistence_file: '/home/homeassistant/.homeassistant/mysensors.json'
+      topic_in_prefix: 'mysensors-out'
+      topic_out_prefix: 'mysensors-in'
+  debug: true
+  optimistic: false
+  persistence: true
+  retain: true
+  version: 2.0
+
+notify:
+  - name: pushbullet
+    platform: pushbullet
+    api_key: !secret pushbullet_api
+
+rflink:
+  port: /dev/ttyUSB0
+  wait_for_ack: true
+
+light: !include_dir_merge_list lights
+automation: !include_dir_merge_list automation
+group: !include_dir_merge_named group
+#script: !include scripts.yaml
+sensor: !include_dir_merge_list sensor
+#binary_sensor: !include binary_sensor.yaml
+#input_select: !include inputs/input_select.yaml
+#input_slider: !include inputs/input_slider.yaml

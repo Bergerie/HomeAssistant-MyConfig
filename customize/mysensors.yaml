@@ -1,0 +1,11 @@
+- entity_id: sensor.myslipo_1_0
+  friendly_name: 'Obývák'
+
+- entity_id: sensor.living_temp_batteries
+  icon: mdi:battery-50
+
+- entity_id: sensor.myslipo_2_0
+  friendly_name: 'Ložnice'
+
+- entity_id: sensor.bedroom_temp_batteries
+  icon: mdi:battery-50

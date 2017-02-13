@@ -1,0 +1,3 @@
+sensor:
+  platform: rflink
+  new_devices_group: "New lights"

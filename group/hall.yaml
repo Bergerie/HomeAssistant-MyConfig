@@ -1,0 +1,13 @@
+hall:
+  view: yes
+  name: Chodba
+  entities:
+    - group.halllights
+
+halllights:
+  name: Světla
+  entities:
+    - light.chodba_bundy
+    - light.chodba_vesak
+    - light.boty
+    - light.skrin
