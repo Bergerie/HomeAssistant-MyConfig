@@ -15,20 +15,22 @@ sudo nano /etc/mosquitto/conf.d/mosquitto.conf
 ```
 Paste following and change to your needs
 ```sh
-user mosquitto
 max_queued_messages 1000
 message_size_limit 0
 allow_zero_length_clientid true
 allow_duplicate_messages false
 
 port 1883
+protocol mqtt
+
 listener 9001
 protocol websockets
+
 autosave_interval 900
 autosave_on_changes false
-persistence true
+
 persistence_file mosquitto.db
-persistence_location /var/lib/mosquitto/
+
 allow_anonymous false
 password_file /etc/mosquitto/passwd
 ```
@@ -36,7 +38,8 @@ password_file /etc/mosquitto/passwd
 Generate user `admin` for MQTT
 ```
 sudo /usr/bin/mosquitto_passwd -c /etc/mosquitto/passwd admin
-sudo /etc/init.d/mosquitto restart
+sudo systemctl enable mosquitto.service
+sudo systemctl start mosquitto.service
 ```
 
 ## Install SAMBA
@@ -46,22 +49,19 @@ sudo nano /etc/samba/smb.conf
 ```
 Append to the end:
 ```
-wins support = yes
+#wins support = yes
 
 [homeassistant]
 path = /home/homeassistant/.homeassistant/
-# valid users =
 read only = no
-only guest=no
 browsable = yes
 writable = yes
-create mask = 0777
-directory mask = 0777
-# force user = root
-force create mode = 0777
-force directory mode = 0777
-hosts allow =
-public=no
+valid users = homeassistant
+#create mask = 0777
+#directory mask = 0777
+#force user = root
+#force create mode = 0777
+#force directory mode = 0777
 ```
 Create user `homeassistant`and password 
 ```sh
@@ -71,7 +71,7 @@ And restart
 ```sh
 sudo update-rc.d smbd enable
 sudo update-rc.d nmbd enable
-sudo service smbd restart
+sudo /etc/init.d/samba restart
 ```
 
 ## Install MySensors gateway
@@ -185,4 +185,9 @@ minicom -b 57600 -o -D /dev/serial0
 ## Enable serial port to `homeassistant` user
 ```
 sudo usermod -G dialout -a homeassistant
+```
+
+## Install `NMAP`
+```sh
+sudo apt-get install nmap
 ```
