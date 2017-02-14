@@ -1,3 +1,79 @@
+## Install Mosquitto
+```sh
+sudo wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
+sudo apt-key add mosquitto-repo.gpg.key
+sudo rm mosquitto-repo.gpg.key
+
+cd /etc/apt/sources.list.d/
+
+sudo wget http://repo.mosquitto.org/debian/mosquitto-jessie.list
+
+sudo apt-get update
+sudo apt-get install mosquitto
+
+sudo nano /etc/mosquitto/conf.d/mosquitto.conf
+```
+Paste following and change to your needs
+```sh
+user mosquitto
+max_queued_messages 1000
+message_size_limit 0
+allow_zero_length_clientid true
+allow_duplicate_messages false
+
+port 1883
+listener 9001
+protocol websockets
+autosave_interval 900
+autosave_on_changes false
+persistence true
+persistence_file mosquitto.db
+persistence_location /var/lib/mosquitto/
+allow_anonymous false
+password_file /etc/mosquitto/passwd
+```
+
+Generate user `admin` for MQTT
+```
+sudo /usr/bin/mosquitto_passwd -c /etc/mosquitto/passwd admin
+sudo /etc/init.d/mosquitto restart
+```
+
+## Install SAMBA
+```sh
+sudo apt-get install samba samba-common-bin
+sudo nano /etc/samba/smb.conf
+```
+Append to the end:
+```
+wins support = yes
+
+[homeassistant]
+path = /home/homeassistant/.homeassistant/
+# valid users =
+read only = no
+only guest=no
+browsable = yes
+writable = yes
+create mask = 0777
+directory mask = 0777
+# force user = root
+force create mode = 0777
+force directory mode = 0777
+hosts allow =
+public=no
+```
+Create user `homeassistant`and password 
+```sh
+sudo smbpasswd -a homeassistant
+```
+And restart
+```sh
+sudo update-rc.d smbd enable
+sudo update-rc.d nmbd enable
+sudo service smbd restart
+```
+
 ## Install MySensors gateway
 ```sh
 git clone https://github.com/mysensors/MySensors.git --branch master
@@ -29,7 +105,7 @@ sudo systemctl start mysgw.service
 
 
 ## To install LIRC
-```bat
+```sh
 sudo apt-get install lirc liblircclient-dev
 sudo nano /etc/lirc/hardware.conf
 ```
@@ -63,7 +139,7 @@ LIRCMD_CONF=""
 ########################################################
 ```
 
-```bat
+```sh
 sudo nano /etc/modules
 ```
 Append to the end:
@@ -71,7 +147,13 @@ Append to the end:
 lirc_dev
 lirc_rpi gpio_in_pin=16 gpio_out_pin=20
 ```
-```bat
+
+```sh
+sudo nano /etc/lirc/lircd.conf
+# paste content of lircd.conf from this repo
+```
+
+```sh
 sudo /etc/init.d/lirc stop
 sudo /etc/init.d/lirc start
 sudo nano /boot/config.txt
@@ -79,4 +161,28 @@ sudo nano /boot/config.txt
 Append to the end:
 ```
 dtoverlay=lirc-rpi,gpio_in_pin=16,gpio_out_pin=20,gpio_in_pull=up
+```
+
+## GPIO Serial port
+```sh
+sudo nano /boot/config.txt
+#find enable_uart=0 and change it to 
+enable_uart=1
+```
+```sh
+sudo nano /boot/cmdline.txt
+#remove the word phase
+"console=serial0,115200" or "console=ttyAMA0,115200"
+```
+
+### If you want to test serial port
+```sh
+sudo apt-get install minicom
+minicom -b 57600 -o -D /dev/serial0
+
+# to exit press ctrl+a x
+```
+## Enable serial port to `homeassistant` user
+```
+sudo usermod -G dialout -a homeassistant
 ```
