@@ -48,20 +48,14 @@ sudo apt-get install samba samba-common-bin
 sudo nano /etc/samba/smb.conf
 ```
 Append to the end:
-```
-#wins support = yes
-
+```ini
 [homeassistant]
 path = /home/homeassistant/.homeassistant/
 read only = no
 browsable = yes
 writable = yes
 valid users = homeassistant
-#create mask = 0777
-#directory mask = 0777
-#force user = root
-#force create mode = 0777
-#force directory mode = 0777
+user = homeassistant
 ```
 Create user `homeassistant`and password 
 ```sh
@@ -109,7 +103,7 @@ sudo systemctl start mysgw.service
 sudo apt-get install lirc liblircclient-dev
 sudo nano /etc/lirc/hardware.conf
 ```
-Paste following:
+Paste following: 
 
 ```
 ########################################################
@@ -151,6 +145,9 @@ lirc_rpi gpio_in_pin=16 gpio_out_pin=20
 ```sh
 sudo nano /etc/lirc/lircd.conf
 # paste content of lircd.conf from this repo
+
+sudo nano /etc/lirc/lircrc
+# paste content of .lircrc from this repo
 ```
 
 ```sh

@@ -4,7 +4,7 @@ livingroom:
   entities:
     - group.livingroomlights
     - group.palm_moisture
-    - sensor.living_temp
+    - sensor.myslipo_1_0
     - media_player.lg_tv_remote
     - media_player.kodi
 

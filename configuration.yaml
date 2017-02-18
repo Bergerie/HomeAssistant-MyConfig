@@ -35,12 +35,13 @@ logbook:
     domains:
       - sun
 
-# logger:
-#  default: warning
-#  logs:
-#     homeassistant.components.mysensors: debug
-#     mysensors.mysensors: debug
-#     homeassistant.components.rflink: debug
+logger:
+ default: warning
+ logs:
+    # homeassistant.components.mysensors: debug
+    # mysensors.mysensors: debug
+    # homeassistant.components.rflink: debug
+    homeassistant.components.lirc: debug
 
 zone cottage:
   name: Chalupa
@@ -82,7 +83,10 @@ device_tracker:
     hosts: 192.168.1.1/24
     home_interval: 10
 
-#lirc:
+# lircy:
+#   path: '/home/homeassistant/.homeassistant/.lircrc'
+
+lirc:
 
 mysensors:
   gateways:
@@ -110,6 +114,7 @@ automation: !include_dir_merge_list automation
 group: !include_dir_merge_named group
 #script: !include scripts.yaml
 sensor: !include_dir_merge_list sensor
+shell_command: !include_dir_merge_named shell
 #binary_sensor: !include binary_sensor.yaml
 #input_select: !include inputs/input_select.yaml
 #input_slider: !include inputs/input_slider.yaml

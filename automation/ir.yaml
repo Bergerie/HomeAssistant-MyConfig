@@ -1,0 +1,99 @@
+- alias: IR TV power toggle
+  trigger:
+    platform: event
+    event_type: ir_command_received
+    event_data:
+      button_name: AV_KEY_POWER2
+  action:
+    service: shell_command.tv_toggle
+
+- alias: IR TV channel up
+  trigger:
+    platform: event
+    event_type: ir_command_received
+    event_data:
+      button_name: AV_KEY_CHANNELUP
+  action:
+    service: shell_command.tv_channel_up
+
+- alias: IR TV channel down
+  trigger:
+    platform: event
+    event_type: ir_command_received
+    event_data:
+      button_name: AV_KEY_CHANNELDOWN
+  action:
+    service: shell_command.tv_channel_down
+
+- alias: IR TV left
+  trigger:
+    platform: event
+    event_type: ir_command_received
+    event_data:
+      button_name: AV_KEY_LEFT
+  action:
+    service: shell_command.tv_left
+
+- alias: IR TV right
+  trigger:
+    platform: event
+    event_type: ir_command_received
+    event_data:
+      button_name: AV_KEY_RIGHT
+  action:
+    service: shell_command.tv_right
+
+- alias: IR TV up
+  trigger:
+    platform: event
+    event_type: ir_command_received
+    event_data:
+      button_name: AV_KEY_UP
+  action:
+    service: shell_command.tv_up
+
+- alias: IR TV down
+  trigger:
+    platform: event
+    event_type: ir_command_received
+    event_data:
+      button_name: AV_KEY_DOWN
+  action:
+    service: shell_command.tv_down
+
+- alias: IR TV ok
+  trigger:
+    platform: event
+    event_type: ir_command_received
+    event_data:
+      button_name: AV_KEY_ENTER
+  action:
+    service: shell_command.tv_ok
+
+- alias: IR TV DVD
+  trigger:
+    platform: event
+    event_type: ir_command_received
+    event_data:
+      button_name: AV_KEY_DVD
+  action:
+    service: shell_command.tv_input_kodi
+
+- alias: IR TV 
+  trigger:
+    platform: event
+    event_type: ir_command_received
+    event_data:
+      button_name: AV_KEY_TV
+  action:
+    service: shell_command.tv_input_tv
+
+- alias: IR TV 
+  trigger:
+    platform: event
+    event_type: ir_command_received
+    event_data:
+      button_name: AV_KEY_CHANNEL
+  action:
+    service: shell_command.tv_red
+
