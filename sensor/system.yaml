@@ -1,3 +1,18 @@
+- platform: clientraw
+  url: !secret clientraw_url
+  monitored_conditions:
+    - dewpoint_c
+    - feelslike_c
+    - temp_c
+    - wind_degrees
+    - wind_dir
+    - wind_gust_kph
+    - wind_kph
+    - symbol
+    - rain_rate
+    - pressure
+    - humidity
+
 - platform: yr
   monitored_conditions:
     - symbol

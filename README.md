@@ -1,3 +1,21 @@
+## Install InfluxDB
+```sh
+wget https://dl.influxdata.com/influxdb/releases/influxdb_1.2.0_armhf.deb
+sudo dpkg -i influxdb_1.2.0_armhf.deb 
+sudo service influxd start 
+
+influx
+CREATE DATABASE home_assistant
+```
+## Install Grafana
+```sh
+wget https://github.com/fg2it/grafana-on-raspberry/releases/download/v4.1.2/grafana_4.1.2-1487023783_armhf.deb
+sudo dpkg -i grafana_4.1.2-1487023783_armhf.deb
+sudo /bin/systemctl daemon-reload
+sudo /bin/systemctl enable grafana-server
+sudo /bin/systemctl start grafana-server 
+```
+
 ## Install Mosquitto
 ```sh
 sudo wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key

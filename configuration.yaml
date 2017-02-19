@@ -41,7 +41,7 @@ logger:
     # homeassistant.components.mysensors: debug
     # mysensors.mysensors: debug
     # homeassistant.components.rflink: debug
-    homeassistant.components.lirc: debug
+    custom_components.sensor.clientraw: debug
 
 zone cottage:
   name: Chalupa
@@ -87,6 +87,10 @@ device_tracker:
 #   path: '/home/homeassistant/.homeassistant/.lircrc'
 
 lirc:
+
+influxdb:
+  username: !secret influxdb_username
+  password: !secret influxdb_password
 
 mysensors:
   gateways:
