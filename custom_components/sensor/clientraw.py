@@ -11,11 +11,11 @@ import voluptuous as vol
 import homeassistant.helpers.config_validation as cv
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.const import (
-    CONF_MONITORED_CONDITIONS, CONF_URL, TEMP_FAHRENHEIT, TEMP_CELSIUS)
+    CONF_MONITORED_CONDITIONS, TEMP_FAHRENHEIT, TEMP_CELSIUS)
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.event import (
-    async_track_point_in_utc_time, async_track_utc_time_change)
+    async_track_point_in_utc_time, async_track_time_interval)
 from homeassistant.util import dt as dt_util
 
 _LOGGER = logging.getLogger(__name__)
@@ -23,14 +23,12 @@ _LOGGER = logging.getLogger(__name__)
 SENSOR_TYPES = {
     'dewpoint_c': ['Dewpoint (°C)', TEMP_CELSIUS],
     'dewpoint_f': ['Dewpoint (°F)', TEMP_FAHRENHEIT],
-    'feelslike_c': ['Feels Like (°C)', TEMP_CELSIUS],
-    'feelslike_f': ['Feels Like (°F)', TEMP_FAHRENHEIT],
     'heat_index_c': ['Heat index (°C)', TEMP_CELSIUS],
     'heat_index_f': ['Heat index (°F)', TEMP_FAHRENHEIT],
     'temp_c': ['Temperature (°C)', TEMP_CELSIUS],
     'temp_f': ['Temperature (°F)', TEMP_FAHRENHEIT],
     'wind_degrees': ['Wind Degrees', '°'],
-    'wind_dir': ['Wind Degrees', None],
+    'wind_dir': ['Wind Direction', None],
     'wind_gust_kph': ['Wind Gust (km/h)', 'km/h'],
     'wind_gust_mph': ['Wind Gust (mph)', 'mph'],
     'wind_kph': ['Wind Speed (km/h)', 'km/h'],
@@ -43,10 +41,15 @@ SENSOR_TYPES = {
     'cloud_height_ft': ['Cloud Height (ft)', 'ft']
 }
 
+CONF_URL = 'url'
+CONF_INTERVAL = 'interval'
+
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_MONITORED_CONDITIONS, default=[]):
         vol.All(cv.ensure_list, [vol.In(SENSOR_TYPES.keys())]),
     vol.Required(CONF_URL, default=[]): cv.string,
+    vol.Optional(CONF_INTERVAL, default=15):
+        vol.All(vol.Coerce(int), vol.Range(min=1, max=59)),
 })
 
 @asyncio.coroutine
@@ -54,8 +57,9 @@ def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
     """Setup the sensor platform."""
 
     url = config.get(CONF_URL)
+    interval = config.get(CONF_INTERVAL)
 
-    _LOGGER.debug("Clientraw setup")
+    _LOGGER.debug("Clientraw setup interval %s", interval)
 
     dev = []
     for sensor_type in config[CONF_MONITORED_CONDITIONS]:
@@ -63,10 +67,9 @@ def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
     yield from async_add_devices(dev)
 
     weather = ClientrawData(hass, url, dev)
-    # Update weather on the hour, spread seconds
-    async_track_utc_time_change(hass, weather.async_update,
-                                minute=randrange(1, 10),
-                                second=randrange(0, 59))
+    # Update weather per interval
+    async_track_time_interval(hass, weather.async_update,
+                                timedelta(minutes=interval, seconds=0))
     yield from weather.async_update()
 
 
@@ -108,7 +111,6 @@ class ClientrawData(object):
         """Initialize the data object."""
         self._url = url
         self.devices = devices
-        self._nextrun = None
         self.data = {}
         self.hass = hass
 
@@ -117,40 +119,37 @@ class ClientrawData(object):
         """Get the latest data"""
         def try_again(err: str):
             """Retry in 5 minutes."""
-            _LOGGER.warning('Retrying in 5 minutes: %s', err)
-            self._nextrun = None
+            _LOGGER.error('Fetching url failed, retrying in 5 minutes: %s', err)
             nxt = dt_util.utcnow() + timedelta(minutes=5)
             if nxt.minute >= 5:
                 async_track_point_in_utc_time(self.hass, self.async_update, nxt)
 
-        if self._nextrun is None or dt_util.utcnow() >= self._nextrun:
-            resp = None
-            try:
-                websession = async_get_clientsession(self.hass)
-                with async_timeout.timeout(10, loop=self.hass.loop):
-                    resp = yield from websession.get(self._url)
-                if resp.status != 200:
-                    try_again('{} returned {}'.format(resp.url, resp.status))
-                    return
-                text = yield from resp.text()
+        resp = None
+        try:
+            websession = async_get_clientsession(self.hass)
+            with async_timeout.timeout(10, loop=self.hass.loop):
+                resp = yield from websession.get(self._url)
+            if resp.status != 200:
+                try_again('{} returned {}'.format(resp.url, resp.status))
+                return
+            text = yield from resp.text()
 
-                
             
-            except (asyncio.TimeoutError, aiohttp.errors.ClientError,
-                    aiohttp.errors.ClientDisconnectedError) as err:
-                try_again(err)
-                return
+        
+        except (asyncio.TimeoutError, aiohttp.errors.ClientError,
+                aiohttp.errors.ClientDisconnectedError) as err:
+            try_again(err)
+            return
 
-            finally:
-                if resp is not None:
-                    self.hass.async_add_job(resp.release())
+        finally:
+            if resp is not None:
+                self.hass.async_add_job(resp.release())
 
-            try:
-                self.data = text.split(' ')
-                self._nextrun = dt_util.utcnow() + timedelta(minutes=1)
-            except (ExpatError, IndexError) as err:
-                try_again(err)
-                return
+        try:
+            self.data = text.split(' ')
+        except (ExpatError, IndexError) as err:
+            try_again(err)
+            return
 
         tasks = []
 
@@ -171,25 +170,25 @@ class ClientrawData(object):
             
             elif dev.type == 'temp_f':
                 celsius = float(self.data[4])
-                new_state = (9.0/5.0 * celsius + 32)
+                new_state = round(9.0/5.0 * celsius + 32, 2)
             
             elif dev.type == 'wind_kph':
                 knots = float(self.data[1])
-                new_state = (knots * 1.85166)
+                new_state = round(knots * 1.85166, 2)
             
             elif dev.type == 'wind_mph':
                 knots = float(self.data[1])
                 kmh = (knots * 1.85166)
-                new_state = (0.6214 * kmh)
+                new_state = round(0.6214 * kmh, 2)
             
             elif dev.type == 'wind_gust_kph':
                 knots = float(self.data[2])
-                new_state = (knots * 1.85166)
+                new_state = round(knots * 1.85166, 2)
             
             elif dev.type == 'wind_gust_mph':
                 knots = float(self.data[2])
                 kmh = (knots * 1.85166)
-                new_state = (0.6214 * kmh)
+                new_state = round(0.6214 * kmh, 2)
             
             elif dev.type == 'pressure':
                 new_state = float(self.data[6])
@@ -211,28 +210,21 @@ class ClientrawData(object):
             
             elif dev.type == 'cloud_height_ft':
                 meters = float(self.data[73])
-                new_state = (meters / 0.3048)
+                new_state = round(meters / 0.3048, 2)
             
             elif dev.type == 'dewpoint_c':
                 new_state = float(self.data[72])
             
             elif dev.type == 'dewpoint_f':
                 celsius = float(self.data[72])
-                new_state = (9.0/5.0 * celsius + 32)
+                new_state = round(9.0/5.0 * celsius + 32, 2)
             
             elif dev.type == 'heat_index_c':
                 new_state = float(self.data[112])
             
             elif dev.type == 'heat_index_f':
                 celsius = float(self.data[112])
-                new_state = (9.0/5.0 * celsius + 32)
-            
-            elif dev.type == 'feelslike_c':
-                new_state = float(self.data[0]) # find index
-            
-            elif dev.type == 'feelslike_f':
-                celsius = float(self.data[0]) # find index
-                new_state = (9.0/5.0 * celsius + 32)
+                new_state = round(9.0/5.0 * celsius + 32, 2)
 
             _LOGGER.debug("%s %s", dev.type, new_state)
 

@@ -41,7 +41,7 @@ logger:
     # homeassistant.components.mysensors: debug
     # mysensors.mysensors: debug
     # homeassistant.components.rflink: debug
-    custom_components.sensor.clientraw: debug
+    custom_components.sensor.clientraw: info
 
 zone cottage:
   name: Chalupa

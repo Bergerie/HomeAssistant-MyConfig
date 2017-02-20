@@ -1,8 +1,8 @@
 - platform: clientraw
   url: !secret clientraw_url
+  interval: 12
   monitored_conditions:
     - dewpoint_c
-    - feelslike_c
     - temp_c
     - wind_degrees
     - wind_dir

@@ -24,7 +24,7 @@
 
 - entity_id: sensor.palm_battery
   friendly_name: Vlhkost palma
-  icon: mdi:battery-50
+  icon: mdi:battery-unknown
 
 - entity_id: sensor.palm_light_intensity
   friendly_name: Světelné podmínky
