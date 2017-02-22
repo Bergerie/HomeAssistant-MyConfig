@@ -9,10 +9,10 @@
         {% else %}
           tv
         {% endif %}
-    tv_state:
+    av_state:
       value_template: >
-        {% if is_state('sensor.tv_state', 'on') %}
-          on
-        {% else %}
+        {% if is_state('sensor.av_state', 'off') %}
           off
+        {% else %}
+          on
         {% endif %}

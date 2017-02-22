@@ -6,7 +6,20 @@
       button_name: AV_KEY_POWER2
   action:
     - service: shell_command.tv_toggle
-    - service: shell_command.tv_state
+
+- alias: IR AV state toggle
+  trigger:
+    platform: event
+    event_type: ir_command_received
+    event_data:
+      button_name: AV_KEY_POWER
+  action:
+    - service_template: >
+        {% if states.sensor.av_state.state == 'on' %}
+          shell_command.av_state_off
+        {% else %}
+          shell_command.av_state_on
+        {% endif %}
 
 - alias: IR TV channel up
   trigger:
@@ -115,7 +128,7 @@
   action:
     service: shell_command.tv_mode_bt
 
-- alias: IR TV 
+- alias: IR TV
   trigger:
     platform: event
     event_type: ir_command_received

@@ -10,10 +10,6 @@
   friendly_name: 'Upload'
   icon: mdi:upload
 
-- entity_id: sensor.since_last_boot_templated
-  friendly_name: 'Poslední restart'
-  icon: mdi:refresh
-
 - entity_id: sensor.palm_moisture
   friendly_name: 'Vlhost půdy'
   icon: mdi:water-percent
@@ -21,10 +17,6 @@
 - entity_id: sensor.palm_conductivity
   friendly_name: 'Hnojivo'
   icon: mdi:test-tube
-
-- entity_id: sensor.palm_battery
-  friendly_name: Vlhkost palma
-  icon: mdi:battery-unknown
 
 - entity_id: sensor.palm_light_intensity
   friendly_name: Světelné podmínky
@@ -37,6 +29,10 @@
 - entity_id: sensor.cpu_use
   friendly_name: Využití procesoru
   icon: mdi:matrix
+
+- entity_id: sensor.disk_use_
+  friendly_name: Využité místo
+  icon: mdi:sd
 
 - entity_id: media_player.lg_tv_remote
   friendly_name: Televize

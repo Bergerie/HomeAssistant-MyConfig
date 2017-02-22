@@ -11,7 +11,7 @@ import voluptuous as vol
 import homeassistant.helpers.config_validation as cv
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.const import (
-    CONF_MONITORED_CONDITIONS, TEMP_FAHRENHEIT, TEMP_CELSIUS)
+    CONF_MONITORED_CONDITIONS, TEMP_FAHRENHEIT, TEMP_CELSIUS, ATTR_ATTRIBUTION)
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.event import (
@@ -20,6 +20,9 @@ from homeassistant.util import dt as dt_util
 
 _LOGGER = logging.getLogger(__name__)
 
+CONF_ATTRIBUTION = "Weather forecast delivered by your WD Clientraw enabled " \
+"weather station."
+
 SENSOR_TYPES = {
     'dewpoint_c': ['Dewpoint (°C)', TEMP_CELSIUS],
     'dewpoint_f': ['Dewpoint (°F)', TEMP_FAHRENHEIT],
@@ -27,6 +30,8 @@ SENSOR_TYPES = {
     'heat_index_f': ['Heat index (°F)', TEMP_FAHRENHEIT],
     'temp_c': ['Temperature (°C)', TEMP_CELSIUS],
     'temp_f': ['Temperature (°F)', TEMP_FAHRENHEIT],
+    'feels_like_c': ['Feels like temp (°C)', TEMP_CELSIUS],
+    'feels_like_f': ['Feels like temp (°F)', TEMP_FAHRENHEIT],
     'wind_degrees': ['Wind Degrees', '°'],
     'wind_dir': ['Wind Direction', None],
     'wind_gust_kph': ['Wind Gust (km/h)', 'km/h'],
@@ -34,7 +39,7 @@ SENSOR_TYPES = {
     'wind_kph': ['Wind Speed (km/h)', 'km/h'],
     'wind_mph': ['Wind Speed (mph)', 'mph'],
     'symbol': ['Symbol', None],
-    'rain_rate': ['Rain rate', 'mm'],
+    'daily_rain': ['Daily Rain', 'mm'],
     'pressure': ['Pressure', 'hPa'],
     'humidity': ['Humidity', '%'],
     'cloud_height_m': ['Cloud Height (m)', 'm'],
@@ -100,6 +105,13 @@ class ClientrawSensor(Entity):
         return False
 
     @property
+    def device_state_attributes(self):
+        """Return the state attributes."""
+        return {
+            ATTR_ATTRIBUTION: CONF_ATTRIBUTION,
+        }
+
+    @property
     def unit_of_measurement(self):
         """Return the unit of measurement of this entity, if any."""
         return self._unit_of_measurement
@@ -119,7 +131,7 @@ class ClientrawData(object):
         """Get the latest data"""
         def try_again(err: str):
             """Retry in 5 minutes."""
-            _LOGGER.error('Fetching url failed, retrying in 5 minutes: %s', err)
+            _LOGGER.error('Fetching url failed, retrying in 5 min: %s', err)
             nxt = dt_util.utcnow() + timedelta(minutes=5)
             if nxt.minute >= 5:
                 async_track_point_in_utc_time(self.hass, self.async_update, nxt)
@@ -134,8 +146,8 @@ class ClientrawData(object):
                 return
             text = yield from resp.text()
 
-            
-        
+
+
         except (asyncio.TimeoutError, aiohttp.errors.ClientError,
                 aiohttp.errors.ClientDisconnectedError) as err:
             try_again(err)
@@ -147,6 +159,9 @@ class ClientrawData(object):
 
         try:
             self.data = text.split(' ')
+
+            if len(self.data) < 115 :
+            	raise ValueError('Could not parse the file')
         except (ExpatError, IndexError) as err:
             try_again(err)
             return
@@ -158,72 +173,79 @@ class ClientrawData(object):
         # Update all devices
         for dev in self.devices:
             new_state = None
-                
+
             if dev.type == 'symbol':
                 new_state = self.data[48]
-            
-            elif dev.type == 'rain_rate':
-                new_state = float(self.data[10])
-            
+
+            elif dev.type == 'daily_rain':
+                new_state = float(self.data[7])
+
             elif dev.type == 'temp_c':
                 new_state = float(self.data[4])
-            
+
             elif dev.type == 'temp_f':
                 celsius = float(self.data[4])
                 new_state = round(9.0/5.0 * celsius + 32, 2)
-            
+
             elif dev.type == 'wind_kph':
                 knots = float(self.data[1])
                 new_state = round(knots * 1.85166, 2)
-            
+
             elif dev.type == 'wind_mph':
                 knots = float(self.data[1])
                 kmh = (knots * 1.85166)
                 new_state = round(0.6214 * kmh, 2)
-            
+
             elif dev.type == 'wind_gust_kph':
                 knots = float(self.data[2])
                 new_state = round(knots * 1.85166, 2)
-            
+
             elif dev.type == 'wind_gust_mph':
                 knots = float(self.data[2])
                 kmh = (knots * 1.85166)
                 new_state = round(0.6214 * kmh, 2)
-            
+
             elif dev.type == 'pressure':
                 new_state = float(self.data[6])
-            
+
             elif dev.type == 'wind_degrees':
                 new_state = float(self.data[3])
-            
+
             elif dev.type == 'wind_dir':
                 direction = float(self.data[3])
                 val = int((direction/22.5)+.5)
                 arr=["N","NNE","NE","ENE","E","ESE", "SE", "SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"]
                 new_state = arr[(val % 16)]
-            
+
             elif dev.type == 'humidity':
                 new_state = float(self.data[5])
-            
+
             elif dev.type == 'cloud_height_m':
                 new_state = float(self.data[73])
-            
+
             elif dev.type == 'cloud_height_ft':
                 meters = float(self.data[73])
                 new_state = round(meters / 0.3048, 2)
-            
+
             elif dev.type == 'dewpoint_c':
                 new_state = float(self.data[72])
-            
+
             elif dev.type == 'dewpoint_f':
                 celsius = float(self.data[72])
                 new_state = round(9.0/5.0 * celsius + 32, 2)
-            
+
             elif dev.type == 'heat_index_c':
                 new_state = float(self.data[112])
-            
+
             elif dev.type == 'heat_index_f':
                 celsius = float(self.data[112])
+                new_state = round(9.0/5.0 * celsius + 32, 2)
+
+            elif dev.type == 'feels_like_c':
+                new_state = float(self.data[44])
+
+            elif dev.type == 'feels_like_f':
+                celsius = float(self.data[44])
                 new_state = round(9.0/5.0 * celsius + 32, 2)
 
             _LOGGER.debug("%s %s", dev.type, new_state)

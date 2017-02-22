@@ -1,0 +1,29 @@
+- alias: PIR light night
+  trigger:
+    platform: state
+    entity_id: binary_sensor.pir_livingroom
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: '00:00:00'
+        before: '09:00:00'
+      - condition: sun
+        before: sunrise
+        before_offset: "+00:30:00"
+      - condition: state
+        entity_id: light.obyvak_lampa
+        state: 'off'
+      - condition: state
+        entity_id: light.obyvak
+        state: 'off'
+      - condition: state
+        entity_id: media_player.lg_tv_remote
+        state: 'off'
+  action:
+    service: light.turn_on
+    entity_id: light.obyvak_lampa
+    data:
+      brightness: 50

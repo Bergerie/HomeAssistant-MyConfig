@@ -1,0 +1,33 @@
+- entity_id: sensor.clientraw_temperature_c
+  friendly_name: Teplota
+
+- entity_id: sensor.clientraw_feels_like_temp_c
+  friendly_name: Pocitová teplota
+
+- entity_id: sensor.clientraw_humidity
+  friendly_name: Vlhkost
+  icon: mdi:water-percent
+
+- entity_id: sensor.clientraw_pressure
+  friendly_name: Tlak
+  icon: mdi:trending-up
+
+- entity_id: sensor.clientraw_wind_direction
+  friendly_name: Směr větru
+  icon: mdi:subdirectory-arrow-right
+
+- entity_id: sensor.clientraw_wind_gust_kmh
+  friendly_name: Nárazový vítr
+  icon: mdi:weather-windy
+
+- entity_id: sensor.clientraw_wind_speed_kmh
+  friendly_name: Rychlost větru
+  icon: mdi:weather-windy-variant
+
+- entity_id: sensor.clientraw_dewpoint_c
+  friendly_name: Rosný bod
+  icon: mdi:weather-fog
+
+- entity_id: sensor.clientraw_daily_rain
+  friendly_name: Dnes napršelo
+  icon: mdi:weather-rainy

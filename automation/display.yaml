@@ -33,3 +33,21 @@
         {%- if symbol is not none and symbol != "unavailable" -%}
           {icon: {{ symbol }} }
         {%- endif -%}
+
+- alias: out temp changed
+  trigger:
+    platform: state
+    entity_id: sensor.clientraw_temperature_c
+  condition:
+    - condition: template
+      value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
+  action:
+    service: mqtt.publish
+    data_template:
+      topic: "display"
+      qos: 1
+      payload: >-
+        {%- set out_temp = states.sensor.clientraw_temperature_c.state -%}
+        {%- if out_temp is not none and out_temp != "unavailable" -%}
+          {out_temp: {{ out_temp }} }
+        {%- endif -%}

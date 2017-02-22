@@ -19,10 +19,14 @@ history:
       - sensor.since_last_boot
       - sensor.since_last_boot_templated
       - sensor.living_temp_updated
+      - binary_sensor.pir_livingroom
+      - sensor.tv_mode
+      - sensor.clientraw_wind_direction
     domains:
       - automation
       - group
-# View all events in a logbook
+      - updater
+
 logbook:
   exclude:
     entities:
@@ -32,8 +36,10 @@ logbook:
       - sensor.ram_use
       - sensor.cpu_use
       - automation.in_temp_changed
+      - binary_sensor.pir_livingroom
     domains:
       - sun
+      - updater
 
 logger:
  default: warning
@@ -91,6 +97,25 @@ lirc:
 influxdb:
   username: !secret influxdb_username
   password: !secret influxdb_password
+  whitelist:
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.ram_use
+    - sensor.cpu_use
+    - sensor.myslipo_1_0
+    - sensor.myslipo_2_0
+    - sensor.myslipo_3_0
+    - sensor.clientraw_temperature_c
+    - sensor.clientraw_feels_like_temp_c
+    - sensor.clientraw_pressure
+    - sensor.clientraw_daily_rain
+    - sensor.kitchen_temp_batteries
+    - sensor.living_temp_batteries
+    - sensor.bedroom_temp_batteries
+    - sensor.palm_moisture
+    - sensor.palm_conductivity
+    - sensor.palm_light_intensity
+
 
 mysensors:
   gateways:
@@ -108,6 +133,10 @@ notify:
   - name: pushbullet
     platform: pushbullet
     api_key: !secret pushbullet_api
+  - name: pushetta
+    platform: pushetta
+    api_key: !secret pushetta_api
+    channel_name: !secret pushetta_channel
 
 rflink:
   port: /dev/serial0
@@ -119,6 +148,7 @@ group: !include_dir_merge_named group
 #script: !include scripts.yaml
 sensor: !include_dir_merge_list sensor
 shell_command: !include_dir_merge_named shell
-#binary_sensor: !include binary_sensor.yaml
 #input_select: !include inputs/input_select.yaml
 #input_slider: !include inputs/input_slider.yaml
+
+binary_sensor: !include_dir_merge_list binary_sensor

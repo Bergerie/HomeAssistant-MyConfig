@@ -1,4 +1,4 @@
-The `clientraw` platform is WD Clientraw parser which can read data from your own online weather station ie. Davis Vantage PRO 2.
+The `clientraw` platform is WD Clientraw parser which can read data from your online weather station such a Davis Vantage PRO 2 (tested) and other generating clientraw.txt files
 
 To add clientraw to your installation, add the following to your `configuration.yaml` file:
 
@@ -23,6 +23,8 @@ Configuration variables:
   - **heat_index_f**: Heat index (°F)
   - **temp_c**: Temperature (°C)
   - **temp_f**: Temperature (°F)
+  - **feels_like_c**: Feels like temp (°C)
+  - **feels_like_f**: Feels like temp (°F)
   - **wind_degrees**: Where the wind is coming from in degrees, with true north at 0° and progressing clockwise.
   - **wind_dir**: Wind Direction as string ie.: N, NW, etc.
   - **wind_gust_kph**: Wind Gust (km/h)
@@ -30,7 +32,7 @@ Configuration variables:
   - **wind_kph**: Wind Speed (km/h)
   - **wind_mph**: Wind Speed (mph)
   - **symbol**: Symbol
-  - **rain_rate**: Rain rate (mm)
+  - **daily_rain**: Daily Rain (mm)
   - **pressure**: Pressure (hPa)
   - **humidity**: Relative humidity
   - **cloud_height_m**: Cloud Height (m)
@@ -51,6 +53,8 @@ sensor:
       - heat_index_f
       - temp_c
       - temp_f
+      - feels_like_c
+      - feels_like_f
       - wind_degrees
       - wind_dir
       - wind_gust_kph
