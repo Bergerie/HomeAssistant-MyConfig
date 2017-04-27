@@ -8,5 +8,5 @@ bedroom:
 bedroomlights:
   name: Světla
   entities:
-    - light.loznice
-    - light.loznice_lampa
+    - light.bedroom
+    - light.bedroom_lamp

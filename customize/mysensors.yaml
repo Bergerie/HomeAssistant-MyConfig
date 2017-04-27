@@ -1,8 +1,8 @@
-- entity_id: sensor.myslipo_1_0
+sensor.myslipo_1_0:
   friendly_name: 'Obývák'
 
-- entity_id: sensor.myslipo_2_0
+sensor.myslipo_2_0:
   friendly_name: 'Ložnice'
 
-- entity_id: sensor.myslipo_3_0
+sensor.myslipo_3_0:
   friendly_name: 'Kuchyně'

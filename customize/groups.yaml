@@ -1,20 +1,37 @@
-- entity_id: group.speedtest
-  friendly_name: 'Rychlost internetu'
+group.speedtest:
+  friendly_name: Rychlost internetu
 
-- entity_id: group.livingroom
+group.livingroom:
   order: 1
 
-- entity_id: group.bedroom
+group.bedroom:
   order: 2
 
-- entity_id: group.room
+group.room:
   order: 3
 
-- entity_id: group.kitchen
+group.kitchen:
   order: 4
   
-- entity_id: group.hall
+group.hall:
   order: 5
 
-- entity_id: group.other
+group.other:
   order: 6
+
+script.room_pc_off:
+  friendly_name: Vypnout počítač v pokoji
+  icon: mdi:laptop-off
+
+script.restart:
+  friendly_name: Restartovat systém
+  icon: mdi:restart
+
+automation.automaticke_nocni_svetlo:
+  icon: mdi:weather-night
+
+automation.vypnout_svetla_pri_vychodu_slunce:
+  icon: mdi:weather-sunset-up
+
+device_tracker.pokoj_pc:
+  icon: mdi:laptop

@@ -3,8 +3,9 @@ kitchen:
   name: Kuchyně
   entities:
     - group.kitchenlights
+    - sensor.myslipo_3_0
 
 kitchenlights:
   name: Světla
   entities:
-    - light.kuchyne
+    - light.kitchen

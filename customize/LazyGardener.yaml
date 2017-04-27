@@ -1,0 +1,19 @@
+switch.lazygardener_herbs:
+  friendly_name: 'Bylinky'
+  icon: mdi:leaf
+
+switch.lazygardener_fruit:
+  friendly_name: 'Ovoce'
+  icon: mdi:food-apple
+
+switch.lazygardener_flowers:
+  friendly_name: 'Kytičky'
+  icon: mdi:flower
+
+switch.lazygardener_veg:
+  friendly_name: 'Zelenina'
+  icon: mdi:carrot
+
+switch.lazygardener_shade_flowers:
+  friendly_name: 'Záhon u plotu'
+  icon: mdi:gate

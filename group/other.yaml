@@ -2,12 +2,11 @@ other:
   name: Ostatní
   view: yes
   entities:
-    - device_tracker.marcelka
-    - device_tracker.pavel
-    - device_tracker.room_pc
-    - group.batteries
+    - device_tracker.marcelka_telefon
+    - device_tracker.pavel_telefon
+    - device_tracker.my_sensors
     - group.system
-    - group.weather
+    - group.batteries
 
 batteries:
   name: Baterie
@@ -27,16 +26,3 @@ system:
     - sensor.speedtest_ping
     - sensor.speedtest_download
     - sensor.speedtest_upload
-
-weather:
-  name: Počasí
-  entities:
-    - sensor.clientraw_temperature_c
-    - sensor.clientraw_feels_like_temp_c
-    - sensor.clientraw_humidity
-    - sensor.clientraw_pressure
-    - sensor.clientraw_wind_direction
-    - sensor.clientraw_wind_gust_kmh
-    - sensor.clientraw_wind_speed_kmh
-    - sensor.clientraw_dewpoint_c
-    - sensor.clientraw_daily_rain

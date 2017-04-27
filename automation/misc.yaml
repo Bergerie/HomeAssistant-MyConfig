@@ -6,9 +6,6 @@
     - service: notify.pushbullet
       data_template: 
         message: "Home Assistant {{ states.updater.updater.state }} k dispozici"
-    - service: notify.pushetta
-      data_template: 
-        message: "Home Assistant {{ states.updater.updater.state }} k dispozici"
 
 
 - alias: Disk Use Alarm
@@ -24,3 +21,14 @@
     - service: notify.pushbullet
       data_template:
         message: 'Dochází místo na disku HA: {{ states.sensor.disk_use_.state }}%!'
+
+- alias: Check PC is on
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    service: mqtt.publish
+    data:
+      topic: "room/pc"
+      qos: 2
+      payload: 'status'

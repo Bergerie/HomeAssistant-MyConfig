@@ -1,38 +1,38 @@
-- entity_id: sensor.speedtest_ping
+sensor.speedtest_ping:
   friendly_name: 'Ping'
   icon: mdi:clock-fast
 
-- entity_id: sensor.speedtest_download
+sensor.speedtest_download:
   friendly_name: 'Download'
   icon: mdi:download
 
-- entity_id: sensor.speedtest_upload
+sensor.speedtest_upload:
   friendly_name: 'Upload'
   icon: mdi:upload
 
-- entity_id: sensor.palm_moisture
+sensor.palm_moisture:
   friendly_name: 'Vlhost půdy'
   icon: mdi:water-percent
 
-- entity_id: sensor.palm_conductivity
+sensor.palm_conductivity:
   friendly_name: 'Hnojivo'
   icon: mdi:test-tube
 
-- entity_id: sensor.palm_light_intensity
+sensor.palm_light_intensity:
   friendly_name: Světelné podmínky
   icon: mdi:white-balance-sunny
 
-- entity_id: sensor.ram_use
+sensor.ram_use:
   friendly_name: Využito paměti
   icon: mdi:memory
 
-- entity_id: sensor.cpu_use
+sensor.cpu_use:
   friendly_name: Využití procesoru
   icon: mdi:matrix
 
-- entity_id: sensor.disk_use_
+sensor.disk_use_:
   friendly_name: Využité místo
   icon: mdi:sd
 
-- entity_id: media_player.lg_tv_remote
+media_player.lg_tv_remote:
   friendly_name: Televize

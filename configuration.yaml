@@ -2,16 +2,18 @@ homeassistant:
   name: Home
   latitude: !secret latitude_home
   longitude: !secret longitude_home
-  elevation: 387
+  elevation: 408
   unit_system: metric
   time_zone: Europe/Prague
-  customize: !include_dir_merge_list customize
+  customize: !include_dir_merge_named customize
+  customize_domain: {}
+  customize_glob: {}
 
 frontend:
 http:
 updater:
-conversation:
 sun:
+config:
 
 history:
   exclude:
@@ -22,10 +24,12 @@ history:
       - binary_sensor.pir_livingroom
       - sensor.tv_mode
       - sensor.clientraw_wind_direction
+      - persistent_notification.invalid_config
     domains:
       - automation
       - group
       - updater
+      - script
 
 logbook:
   exclude:
@@ -37,6 +41,7 @@ logbook:
       - sensor.cpu_use
       - automation.in_temp_changed
       - binary_sensor.pir_livingroom
+      - sensor.clientraw_wind_direction
     domains:
       - sun
       - updater
@@ -48,6 +53,7 @@ logger:
     # mysensors.mysensors: debug
     # homeassistant.components.rflink: debug
     custom_components.sensor.clientraw: info
+    # homeassistant.components.device_tracker: debug
 
 zone cottage:
   name: Chalupa
@@ -56,26 +62,20 @@ zone cottage:
   radius: 200
   icon: mdi:home
 
-# Text to speech
-tts:
-  platform: google
-  cache: true
-  cache_dir: /home/homeassistant/.homeassistant/tts
-  time_memory: 300
-
 #################################
 ###       COMPONENTS          ###
 #################################
 
-media_player kodi:
+media_player:
   - platform: kodi
     host: 192.168.1.105
     turn_off_action: shutdown
-
-media_player tv:
   - platform: lg_netcast
     host: 192.168.1.106
     access_token: !secret tv_token
+  - platform: spotify
+    client_id:  !secret spotify_client
+    client_secret: !secret spotify_secret
 
 mqtt:
   broker: localhost
@@ -87,10 +87,14 @@ mqtt:
 device_tracker:
   - platform: nmap_tracker
     hosts: 192.168.1.1/24
-    home_interval: 10
-
-# lircy:
-#   path: '/home/homeassistant/.homeassistant/.lircrc'
+    home_interval: 600
+  # - platform: tplink
+  #   host: 192.168.1.1
+  #   username: !secret router_username
+  #   password: !secret router_password
+  - platform: mqtt
+    devices:
+      pokoj_pc: room/pc
 
 lirc:
 
@@ -119,11 +123,9 @@ influxdb:
 
 mysensors:
   gateways:
-    - device: mqtt
+    - device: '192.168.1.113'
       persistence_file: '/home/homeassistant/.homeassistant/mysensors.json'
-      topic_in_prefix: 'mysensors-out'
-      topic_out_prefix: 'mysensors-in'
-  debug: true
+      tcp_port: 5003
   optimistic: false
   persistence: true
   retain: true
@@ -133,22 +135,18 @@ notify:
   - name: pushbullet
     platform: pushbullet
     api_key: !secret pushbullet_api
-  - name: pushetta
-    platform: pushetta
-    api_key: !secret pushetta_api
-    channel_name: !secret pushetta_channel
 
 rflink:
   port: /dev/serial0
-  wait_for_ack: true
 
 light: !include_dir_merge_list lights
 automation: !include_dir_merge_list automation
 group: !include_dir_merge_named group
-#script: !include scripts.yaml
+script: !include_dir_merge_named scripts
 sensor: !include_dir_merge_list sensor
 shell_command: !include_dir_merge_named shell
-#input_select: !include inputs/input_select.yaml
-#input_slider: !include inputs/input_slider.yaml
+switch: !include_dir_merge_list switch
+# input_select: !include inputs/input_select.yaml
+# input_slider: !include inputs/input_slider.yaml
 
 binary_sensor: !include_dir_merge_list binary_sensor

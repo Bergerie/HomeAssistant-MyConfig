@@ -7,7 +7,7 @@ hall:
 halllights:
   name: Světla
   entities:
-    - light.chodba_bundy
-    - light.chodba_vesak
-    - light.boty
-    - light.skrin
+    - light.hall_coat_hook
+    - light.hall_dryer
+    - light.hall_shoes
+    - light.hall_closets

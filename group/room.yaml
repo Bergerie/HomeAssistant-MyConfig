@@ -2,9 +2,12 @@ room:
   view: yes
   name: Pokoj
   entities:
+    - device_tracker.room_pc
+    - media_player.spotify
     - group.roomlights
+    - device_tracker.pokoj_pc
 
 roomlights:
   name: Světla
   entities:
-    - light.pokoj
+    - light.room

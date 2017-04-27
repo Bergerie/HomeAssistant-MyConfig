@@ -1,0 +1,6 @@
+# - platform: mqtt
+#   state_topic: "room/pc"
+#   name: "Pokoj PC"
+#   qos: 1
+#   payload_on: "on"
+#   payload_off: "off"

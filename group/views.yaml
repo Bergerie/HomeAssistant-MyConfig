@@ -1,7 +1,34 @@
-# default_view:
-#  view: yes
-#  entities:
-#    - device_tracker.marcelka
-#    - device_tracker.pavel
-#    - sensor.yr_symbol
-#    - sun.sun
+default_view:
+  name: Obecné
+  view: yes
+  entities:
+    - updater.updater
+    - sensor.yr_precipitation
+    - group.weather
+    - group.my_automation
+    - group.lazygardener
+    - script.restart
+
+
+weather:
+  name: Počasí
+  entities:
+    - sensor.clientraw_temperature_c
+    - sensor.clientraw_feels_like_temp_c
+    - sensor.clientraw_humidity
+    - sensor.clientraw_pressure
+    - sensor.clientraw_wind_direction
+    - sensor.clientraw_wind_gust_kmh
+    - sensor.clientraw_wind_speed_kmh
+    - sensor.clientraw_dewpoint_c
+    - sensor.clientraw_daily_rain
+    - sensor.yr_precipitation
+
+my_automation:
+  name: Skripty
+  control: hidden
+  entities:
+    - script.room_pc_off
+    - script.restart
+    - automation.vypnout_svetla_pri_vychodu_slunce
+    - automation.automaticke_nocni_svetlo

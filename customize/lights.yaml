@@ -1,0 +1,29 @@
+light.bedroom:
+  friendly_name: "Hlavní světlo"
+
+light.bedroom_lamp:
+  friendly_name: "Lampa"
+
+light.hall_coat_hook:
+  friendly_name: "Věšák na bundy"
+    
+light.hall_dryer:
+  friendly_name: "Sušák"
+
+light.hall_shoes:
+  friendly_name: "Kumbál na boty"
+
+light.hall_closets:
+  friendly_name: "Skříně"
+
+light.kitchen:
+  friendly_name: "Hlavní světlo"
+
+light.living_room:
+  friendly_name: "Hlavní světlo"
+
+light.living_room_lamp:
+  friendly_name: "Lampa"
+
+light.room: 
+  friendly_name: "Hlavní světlo"

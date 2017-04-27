@@ -1,0 +1,9 @@
+LazyGardener:
+  name: LazyGardener
+  control: hidden
+  entities:
+    - switch.lazygardener_herbs
+    - switch.lazygardener_fruit
+    - switch.lazygardener_flowers
+    - switch.lazygardener_veg
+    - switch.lazygardener_shade_flowers

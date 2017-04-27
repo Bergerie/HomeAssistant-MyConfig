@@ -1,33 +1,33 @@
 - platform: rflink
   devices:
     newkaku_0059f642_c:
-      name: Obývák lampa
+      name: living_room_lamp
       aliasses:
         - newkaku_004c7daa_3
     newkaku_0059f642_b:
-      name: Obývák
+      name: living_room
       aliasses:
         - newkaku_004c7daa_2
     newkaku_004c7daa_d:
-      name: Skříň
+      name: hall_closets
     newkaku_00940f7e_a:
-      name: Boty
+      name: hall_shoes
       aliasses:
         - newkaku_004c7daa_a
     newkaku_0006090a_b:
-      name: Pokoj
+      name: room
       aliasses:
         - newkaku_004c7daa_9
     newkaku_004c7daa_4:
-      name: Kuchyně
+      name: kitchen
     newkaku_0093ca12_a:
-      name: Ložnice
+      name: bedroom
       aliasses:
         - newkaku_004c7daa_5
         - newkaku_004c7daa_c
     newkaku_004c7daa_b:
-      name: Ložnice lampa
+      name: bedroom_lamp
     newkaku_004c7daa_7:
-      name: Chodba bundy
+      name: hall_coat_hook
     newkaku_004c7daa_8:
-      name: Chodba věšák
+      name: hall_dryer

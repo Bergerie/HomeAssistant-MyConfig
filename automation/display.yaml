@@ -8,30 +8,32 @@
   action:
     service: mqtt.publish
     data_template:
-      topic: "display"
+      topic: "display/in_temp"
       qos: 1
+      retain: true
       payload: >-
         {%- set in_temp = states.sensor.myslipo_1_0.state -%}
         {%- if in_temp is not none and in_temp != "unavailable" -%}
-          {in_temp: {{ in_temp }} }
+          {"temp": {{ in_temp }} }
         {%- endif -%}
 
 - alias: weather icon changed
   trigger:
     platform: state
-    entity_id: sensor.yr_symbol
+    entity_id: sensor.clientraw_symbol
   condition:
     - condition: template
       value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
   action:
     service: mqtt.publish
     data_template:
-      topic: "display/weather"
+      topic: "display/forecast"
       qos: 1
+      retain: true
       payload: >-
-        {%- set symbol = states.sensor.yr_symbol.state -%}
+        {%- set symbol = states.sensor.clientraw_symbol.state -%}
         {%- if symbol is not none and symbol != "unavailable" -%}
-          {icon: {{ symbol }} }
+          {"icon": {{ symbol }} }
         {%- endif -%}
 
 - alias: out temp changed
@@ -44,10 +46,31 @@
   action:
     service: mqtt.publish
     data_template:
-      topic: "display"
+      topic: "display/out_temp"
       qos: 1
+      retain: true
       payload: >-
         {%- set out_temp = states.sensor.clientraw_temperature_c.state -%}
         {%- if out_temp is not none and out_temp != "unavailable" -%}
-          {out_temp: {{ out_temp }} }
+          {"temp": {{ out_temp }} }
+        {%- endif -%}
+
+
+- alias: out feel temp changed
+  trigger:
+    platform: state
+    entity_id: sensor.clientraw_feels_like_temp_c
+  condition:
+    - condition: template
+      value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
+  action:
+    service: mqtt.publish
+    data_template:
+      topic: "display/out_temp_feel"
+      qos: 1
+      retain: true
+      payload: >-
+        {%- set out_temp_feel = states.sensor.clientraw_feels_like_temp_c.state -%}
+        {%- if out_temp_feel is not none and out_temp_feel != "unavailable" -%}
+          {"temp": {{ out_temp_feel }} }
         {%- endif -%}

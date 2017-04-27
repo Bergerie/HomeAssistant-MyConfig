@@ -1,4 +1,4 @@
-- alias: PIR light night
+- alias: Automatické noční světlo
   trigger:
     platform: state
     entity_id: binary_sensor.pir_livingroom
@@ -12,7 +12,7 @@
         before: '09:00:00'
       - condition: sun
         before: sunrise
-        before_offset: "+00:30:00"
+        before_offset: "-00:05:00"
       - condition: state
         entity_id: light.obyvak_lampa
         state: 'off'
@@ -27,3 +27,12 @@
     entity_id: light.obyvak_lampa
     data:
       brightness: 50
+
+- alias: Vypnout světla při východu slunce
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:05:00"
+  action:
+    service: light.turn_off
+    entity_id: light.obyvak_lampa

@@ -69,7 +69,7 @@ def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
     dev = []
     for sensor_type in config[CONF_MONITORED_CONDITIONS]:
         dev.append(ClientrawSensor(sensor_type))
-    yield from async_add_devices(dev)
+    async_add_devices(dev)
 
     weather = ClientrawData(hass, url, dev)
     # Update weather per interval
@@ -131,7 +131,7 @@ class ClientrawData(object):
         """Get the latest data"""
         def try_again(err: str):
             """Retry in 5 minutes."""
-            _LOGGER.error('Fetching url failed, retrying in 5 min: %s', err)
+            _LOGGER.warning('Fetching url failed, retrying in 5 min: %s', err)
             nxt = dt_util.utcnow() + timedelta(minutes=5)
             if nxt.minute >= 5:
                 async_track_point_in_utc_time(self.hass, self.async_update, nxt)
@@ -148,14 +148,13 @@ class ClientrawData(object):
 
 
 
-        except (asyncio.TimeoutError, aiohttp.errors.ClientError,
-                aiohttp.errors.ClientDisconnectedError) as err:
+        except (asyncio.TimeoutError, aiohttp.ClientError) as err:
             try_again(err)
             return
 
-        finally:
-            if resp is not None:
-                self.hass.async_add_job(resp.release())
+        # finally:
+        #     if resp is not None:
+        #         self.hass.async_add_job(resp.release())
 
         try:
             self.data = text.split(' ')
@@ -175,7 +174,7 @@ class ClientrawData(object):
             new_state = None
 
             if dev.type == 'symbol':
-                new_state = self.data[48]
+                new_state = int(self.data[48])
 
             elif dev.type == 'daily_rain':
                 new_state = float(self.data[7])

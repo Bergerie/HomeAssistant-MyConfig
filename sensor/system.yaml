@@ -15,7 +15,6 @@
 
 - platform: yr
   monitored_conditions:
-    - symbol
     - precipitation
 
 - platform: systemmonitor

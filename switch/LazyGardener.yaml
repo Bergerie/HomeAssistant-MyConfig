@@ -1,0 +1,44 @@
+- platform: mqtt
+  name: "LazyGardener_herbs"
+  state_topic: "LazyGardener/state"
+  command_topic: "LazyGardener/cmd"
+  payload_on: '{"valve":1,"state":1}'
+  payload_off: '{"valve":1,"state":0}'
+  optimistic: false
+  qos: 1
+
+- platform: mqtt
+  name: "LazyGardener_fruit"
+  state_topic: "LazyGardener/state"
+  command_topic: "LazyGardener/cmd"
+  payload_on: '{"valve":2,"state":1}'
+  payload_off: '{"valve":2,"state":0}'
+  optimistic: false
+  qos: 1
+
+- platform: mqtt
+  name: "LazyGardener_flowers"
+  state_topic: "LazyGardener/state"
+  command_topic: "LazyGardener/cmd"
+  payload_on: '{"valve":3,"state":1}'
+  payload_off: '{"valve":3,"state":0}'
+  optimistic: false
+  qos: 1
+
+- platform: mqtt
+  name: "LazyGardener_veg"
+  state_topic: "LazyGardener/state"
+  command_topic: "LazyGardener/cmd"
+  payload_on: '{"valve":4,"state":1}'
+  payload_off: '{"valve":4,"state":0}'
+  optimistic: false
+  qos: 1
+
+- platform: mqtt
+  name: "LazyGardener_shade_flowers"
+  state_topic: "LazyGardener/state"
+  command_topic: "LazyGardener/cmd"
+  payload_on: '{"valve":5,"state":1}'
+  payload_off: '{"valve":5,"state":0}'
+  optimistic: false
+  qos: 1
