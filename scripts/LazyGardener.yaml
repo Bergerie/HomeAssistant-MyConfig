@@ -1,0 +1,151 @@
+lazygardener_all:
+  sequence:
+    - condition: state
+      entity_id: input_boolean.lazygardener_watering
+      state: 'off'
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_herbs
+    - delay: '00:{{ (states.input_slider.lazygardener_herbs_duration.state | int ) -1}}:00'
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_fruit
+    - delay: '00:{{ states.input_slider.lazygardener_fruit_duration.state | int }}:00'
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_flowers
+    - delay: '00:{{ states.input_slider.lazygardener_flowers_duration.state | int }}:00'
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_veg
+    - delay: '00:{{ states.input_slider.lazygardener_veg_duration.state | int }}:00'
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_herbs
+    - delay: '00:01:00'
+    - service: switch.turn_off
+      data:
+        entity_id: switch.lazygardener_herbs
+
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+
+lazygardener_herbs:
+  sequence:
+    - condition: state
+      entity_id: input_boolean.lazygardener_watering
+      state: 'off'
+
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_herbs
+    - delay: '00:{{ states.input_slider.lazygardener_herbs_duration.state | int }}:00'
+    - service: switch.turn_off
+      data:
+        entity_id: switch.lazygardener_herbs
+
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+lazygardener_fruit:
+  sequence:
+    - condition: state
+      entity_id: input_boolean.lazygardener_watering
+      state: 'off'
+
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_fruit
+    - delay: '00:{{ states.input_slider.lazygardener_fruit_duration.state | int }}:00'
+    - service: switch.turn_off
+      data:
+        entity_id: switch.lazygardener_fruit
+
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+lazygardener_flowers:
+  sequence:
+    - condition: state
+      entity_id: input_boolean.lazygardener_watering
+      state: 'off'
+
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_flowers
+    - delay: '00:{{ states.input_slider.lazygardener_flowers_duration.state | int }}:00'
+    - service: switch.turn_off
+      data:
+        entity_id: switch.lazygardener_flowers
+
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+lazygardener_veg:
+  sequence:
+    - condition: state
+      entity_id: input_boolean.lazygardener_watering
+      state: 'off'
+
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_veg
+    - delay: '00:{{ states.input_slider.lazygardener_veg_duration.state | int }}:00'
+    - service: switch.turn_off
+      data:
+        entity_id: switch.lazygardener_veg
+
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+lazygardener_shade_flowers:
+  sequence:
+    - condition: state
+      entity_id: input_boolean.lazygardener_watering
+      state: 'off'
+
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_shade_flowers
+    - delay: '00:{{ states.input_slider.lazygardener_shade_flowers_duration.state | int }}:00'
+    - service: switch.turn_off
+      data:
+        entity_id: switch.lazygardener_shade_flowers
+
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.lazygardener_watering

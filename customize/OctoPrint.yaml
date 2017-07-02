@@ -1,0 +1,25 @@
+sensor.octoprint_current_state:
+  friendly_name: Status
+  icon: mdi:printer-3d
+
+sensor.octoprint_actual_tool0_temp:
+  friendly_name: Aktuální teplota trysky
+
+sensor.octoprint_target_tool0_temp:
+  friendly_name: Požadovaná teplota trysky
+
+sensor.octoprint_actual_bed_temp:
+  friendly_name: Aktuální teplota podložky
+
+sensor.octoprint_target_bed_temp:
+  friendly_name: Požadovaná teplota podložky
+
+binary_sensor.octoprint_printing_error:
+  friendly_name: Chyba tisku
+  icon: mdi:alert-octagon
+
+automation.konec_3d_tisku:
+  icon: mdi:printer-3d
+  
+automation.chyba_3d_tisku:
+  icon: mdi:printer-3d

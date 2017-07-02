@@ -6,3 +6,6 @@ sensor.myslipo_2_0:
 
 sensor.myslipo_3_0:
   friendly_name: 'Kuchyně'
+
+sensor.myslipo_4_0:
+  friendly_name: 'Teplota za oknem'

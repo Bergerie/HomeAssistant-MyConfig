@@ -12,6 +12,7 @@ This is my [Home Assistant](https://home-assistant.io/) configuration running on
 
 **Devices I have :**
 - [MySensors temperature nodes](../../../MySLipo)
+- [LazyGardener](../../../LazyGardener): My own irrigation controller
 - LG smart TV
 - [RFLink](http://www.nemcon.nl/blog2/) to read 433mHz things, connected over GPIO serial port
 - [HomeEasy](http://service.smartwares.eu/) (433mHz) dimmers, sockets, wall buttons
@@ -19,6 +20,8 @@ This is my [Home Assistant](https://home-assistant.io/) configuration running on
 - [Kodi](https://kodi.tv/) running on old laptop 
 - Xiaomi Mi Flora: controls plants soil moisture
 - PIR sensor attached to Raspberry Pi
+- [OctoPrint](http://octoprint.org/)
+- Sonoff with [custom FW](../../../MQTT_relay)
 
 **Automations:**
 - reads IR remote from Pioneer A/V and transmitting codes for TV - that's one remote to rule them all!

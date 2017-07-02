@@ -15,6 +15,7 @@ batteries:
     - sensor.living_temp_batteries
     - sensor.bedroom_temp_batteries
     - sensor.kitchen_temp_batteries
+    - sensor.outside_temp_batteries
 
 system:
   name: Systém

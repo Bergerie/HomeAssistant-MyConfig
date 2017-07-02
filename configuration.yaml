@@ -14,6 +14,7 @@ http:
 updater:
 sun:
 config:
+# python_scripts:
 
 history:
   exclude:
@@ -42,17 +43,20 @@ logbook:
       - automation.in_temp_changed
       - binary_sensor.pir_livingroom
       - sensor.clientraw_wind_direction
+      - binary_sensor.octoprint
+      - media_player.spotify
     domains:
       - sun
       - updater
+      - octoprint
 
 logger:
  default: warning
- logs:
+ #logs:
     # homeassistant.components.mysensors: debug
     # mysensors.mysensors: debug
     # homeassistant.components.rflink: debug
-    custom_components.sensor.clientraw: info
+    # custom_components.sensor.clientraw: info
     # homeassistant.components.device_tracker: debug
 
 zone cottage:
@@ -101,24 +105,25 @@ lirc:
 influxdb:
   username: !secret influxdb_username
   password: !secret influxdb_password
-  whitelist:
-    - sensor.speedtest_download
-    - sensor.speedtest_upload
-    - sensor.ram_use
-    - sensor.cpu_use
-    - sensor.myslipo_1_0
-    - sensor.myslipo_2_0
-    - sensor.myslipo_3_0
-    - sensor.clientraw_temperature_c
-    - sensor.clientraw_feels_like_temp_c
-    - sensor.clientraw_pressure
-    - sensor.clientraw_daily_rain
-    - sensor.kitchen_temp_batteries
-    - sensor.living_temp_batteries
-    - sensor.bedroom_temp_batteries
-    - sensor.palm_moisture
-    - sensor.palm_conductivity
-    - sensor.palm_light_intensity
+  include:
+    entities:
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+      - sensor.ram_use
+      - sensor.cpu_use
+      - sensor.myslipo_1_0
+      - sensor.myslipo_2_0
+      - sensor.myslipo_3_0
+      - sensor.clientraw_temperature_c
+      - sensor.clientraw_feels_like_temp_c
+      - sensor.clientraw_pressure
+      - sensor.clientraw_daily_rain
+      - sensor.kitchen_temp_batteries
+      - sensor.living_temp_batteries
+      - sensor.bedroom_temp_batteries
+      - sensor.palm_moisture
+      - sensor.palm_conductivity
+      - sensor.palm_light_intensity
 
 
 mysensors:
@@ -139,14 +144,20 @@ notify:
 rflink:
   port: /dev/serial0
 
+octoprint:
+  host: '192.168.1.115'
+  api_key: !secret octoprint_api
+
+
 light: !include_dir_merge_list lights
-automation: !include_dir_merge_list automation
+automation: !include automations.yaml
 group: !include_dir_merge_named group
 script: !include_dir_merge_named scripts
 sensor: !include_dir_merge_list sensor
 shell_command: !include_dir_merge_named shell
 switch: !include_dir_merge_list switch
 # input_select: !include inputs/input_select.yaml
-# input_slider: !include inputs/input_slider.yaml
+input_slider: !include_dir_merge_named input_slider
 
+input_boolean: !include_dir_merge_named input_boolean
 binary_sensor: !include_dir_merge_list binary_sensor

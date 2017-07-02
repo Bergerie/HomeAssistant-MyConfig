@@ -1,9 +1,46 @@
-LazyGardener:
-  name: LazyGardener
-  control: hidden
+lazygardener:
+  view: true
+  name: "lazy-gardener"
   entities:
-    - switch.lazygardener_herbs
-    - switch.lazygardener_fruit
-    - switch.lazygardener_flowers
-    - switch.lazygardener_veg
-    - switch.lazygardener_shade_flowers
+    - group.lazygardener_control
+    - group.lazygardener_herbs
+    - group.lazygardener_fruit
+    - group.lazygardener_flowers
+    - group.lazygardener_veg
+    - group.lazygardener_shade_flowers
+
+lazygardener_control:
+  name: "Ovládání"
+  entities:
+    - switch.lazygardener_all
+    - sensor.lazygardener_watering
+
+lazygardener_herbs:
+  name: "Bylinky + papriky"
+  entities:
+    - switch.lazygardener_herbs_template
+    - input_slider.lazygardener_herbs_duration
+
+lazygardener_fruit:
+  name: "Ovoce"
+  entities:
+    - switch.lazygardener_fruit_template
+    - input_slider.lazygardener_fruit_duration
+
+lazygardener_flowers:
+  name: "Kytičky + jahody"
+  entities:
+    - switch.lazygardener_flowers_template
+    - input_slider.lazygardener_flowers_duration
+
+lazygardener_veg:
+  name: "Zelenina"
+  entities:
+    - switch.lazygardener_veg_template
+    - input_slider.lazygardener_veg_duration
+
+lazygardener_shade_flowers:
+  name: "Záhon u plotu"
+  entities:
+    - switch.lazygardener_shade_flowers_template
+    - input_slider.lazygardener_shade_flowers_duration

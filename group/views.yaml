@@ -13,6 +13,7 @@ default_view:
 weather:
   name: Počasí
   entities:
+    - sensor.myslipo_4_0
     - sensor.clientraw_temperature_c
     - sensor.clientraw_feels_like_temp_c
     - sensor.clientraw_humidity
@@ -32,3 +33,5 @@ my_automation:
     - script.restart
     - automation.vypnout_svetla_pri_vychodu_slunce
     - automation.automaticke_nocni_svetlo
+    - automation.konec_3d_tisku
+    - automation.chyba_3d_tisku

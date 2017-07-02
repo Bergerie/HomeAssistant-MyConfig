@@ -6,8 +6,20 @@ room:
     - media_player.spotify
     - group.roomlights
     - device_tracker.pokoj_pc
+    - device_tracker.octoprint
+    - group.octoprint
 
 roomlights:
   name: Světla
   entities:
     - light.room
+
+octoprint:
+  name: OctoPrint
+  entities:
+    - sensor.octoprint_current_state
+    - sensor.octoprint_actual_bed_temp
+    - sensor.octoprint_target_bed_temp
+    - sensor.octoprint_actual_tool0_temp
+    - sensor.octoprint_target_tool0_temp
+    - binary_sensor.octoprint_printing_error
