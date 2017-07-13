@@ -1,0 +1,79 @@
+################################################################
+# COMPONENTS
+################################################################
+
+sensor:
+  - platform: yr
+    monitored_conditions:
+      - precipitation
+
+################################################################
+# CUSTOMIZE
+################################################################
+
+homeassistant:
+  customize:
+    sensor.clientraw_temperature_c:
+      friendly_name: Teplota
+
+    sensor.clientraw_feels_like_temp_c:
+      friendly_name: Pocitová teplota
+
+    sensor.clientraw_humidity:
+      friendly_name: Vlhkost
+      icon: mdi:water-percent
+
+    sensor.clientraw_pressure:
+      friendly_name: Tlak
+      icon: mdi:trending-up
+
+    sensor.clientraw_wind_direction:
+      friendly_name: Směr větru
+      icon: mdi:subdirectory-arrow-right
+
+    sensor.clientraw_wind_gust_kmh:
+      friendly_name: Nárazový vítr
+      icon: mdi:weather-windy
+
+    sensor.clientraw_wind_speed_kmh:
+      friendly_name: Rychlost větru
+      icon: mdi:weather-windy-variant
+
+    sensor.clientraw_dewpoint_c:
+      friendly_name: Rosný bod
+      icon: mdi:weather-fog
+
+    sensor.clientraw_daily_rain:
+      friendly_name: Dnes napršelo
+      icon: mdi:weather-rainy
+
+    sensor.yr_precipitation:
+      friendly_name: Předpoveď deště
+      icon: mdi:weather-rainy
+
+################################################################
+# GROUPS
+################################################################
+group:
+  weather:
+    name: Počasí
+    entities:
+      - sensor.myslipo_4_0
+      - sensor.clientraw_temperature_c
+      - sensor.clientraw_feels_like_temp_c
+      - sensor.clientraw_humidity
+      - sensor.clientraw_pressure
+      - sensor.clientraw_wind_direction
+      - sensor.clientraw_wind_gust_kmh
+      - sensor.clientraw_wind_speed_kmh
+      - sensor.clientraw_dewpoint_c
+      - sensor.clientraw_daily_rain
+      - sensor.yr_precipitation
+      
+################################################################
+# SCENES
+################################################################
+
+################################################################
+# SCRIPTS
+################################################################

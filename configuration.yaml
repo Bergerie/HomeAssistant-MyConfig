@@ -5,9 +5,8 @@ homeassistant:
   elevation: 408
   unit_system: metric
   time_zone: Europe/Prague
-  customize: !include_dir_merge_named customize
-  customize_domain: {}
-  customize_glob: {}
+  customize: !include automation/customize.yaml
+  packages: !include_dir_named packages/
 
 frontend:
 http:
@@ -15,6 +14,9 @@ updater:
 sun:
 config:
 # python_scripts:
+recorder:
+  # Delete events and states older than 30 days
+  purge_days: 30
 
 history:
   exclude:
@@ -31,6 +33,7 @@ history:
       - group
       - updater
       - script
+      - input_slider
 
 logbook:
   exclude:
@@ -125,39 +128,9 @@ influxdb:
       - sensor.palm_conductivity
       - sensor.palm_light_intensity
 
-
-mysensors:
-  gateways:
-    - device: '192.168.1.113'
-      persistence_file: '/home/homeassistant/.homeassistant/mysensors.json'
-      tcp_port: 5003
-  optimistic: false
-  persistence: true
-  retain: true
-  version: 2.0
-
 notify:
   - name: pushbullet
     platform: pushbullet
     api_key: !secret pushbullet_api
 
-rflink:
-  port: /dev/serial0
-
-octoprint:
-  host: '192.168.1.115'
-  api_key: !secret octoprint_api
-
-
-light: !include_dir_merge_list lights
-automation: !include automations.yaml
-group: !include_dir_merge_named group
-script: !include_dir_merge_named scripts
-sensor: !include_dir_merge_list sensor
-shell_command: !include_dir_merge_named shell
-switch: !include_dir_merge_list switch
-# input_select: !include inputs/input_select.yaml
-input_slider: !include_dir_merge_named input_slider
-
-input_boolean: !include_dir_merge_named input_boolean
-binary_sensor: !include_dir_merge_list binary_sensor
+automation: !include automation/automations.yaml

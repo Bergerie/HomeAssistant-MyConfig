@@ -21,13 +21,18 @@ This is my [Home Assistant](https://home-assistant.io/) configuration running on
 - Xiaomi Mi Flora: controls plants soil moisture
 - PIR sensor attached to Raspberry Pi
 - [OctoPrint](http://octoprint.org/)
-- Sonoff with [custom FW](../../../MQTT_relay)
+- Sonoff with [custom FW](../../../MQTT-relay)
+- [ESP8266 based TFT display](MQTT-weather-display)
 
 **Automations:**
 - reads IR remote from Pioneer A/V and transmitting codes for TV - that's one remote to rule them all!
 - if A/V is in DVD mode, switch TV input to HDMI and use IR remote's joystick to control Kodi
 - watch weather and room temperature to send it over MQTT to ESP8266 display
 - turn on the lamp when move is detected during night: midnight until 30 minutes after sunset
+- watch disk usage, if nearly full send me notification
+- when 3D print ends send me notification - only on request
+- turn on each LazyGardener's valves one by one for time selected from input_slider
+- turn on selected LazyGardener's valve with auto turn off timeout feature
 
 ### Todo List
 - scenes: dim lights when playing movie on Kodi

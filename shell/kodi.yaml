@@ -1,9 +1,0 @@
-kodi_back: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.Back \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
-kodi_left: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.Left \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
-kodi_right: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.Right \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
-kodi_up: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.Up \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
-kodi_down: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.Down \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
-kodi_ok: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.Select \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
-kodi_menu: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.ContextMenu \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
-
-

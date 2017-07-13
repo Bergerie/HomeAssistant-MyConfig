@@ -1,0 +1,136 @@
+################################################################
+# COMPONENTS
+################################################################
+
+rflink:
+  port: /dev/serial0
+
+light:
+  - platform: rflink
+    devices:
+      newkaku_0059f642_c:
+        name: living_room_lamp
+        aliasses:
+          - newkaku_004c7daa_3
+      newkaku_0059f642_b:
+        name: living_room
+        aliasses:
+          - newkaku_004c7daa_2
+      newkaku_004c7daa_d:
+        name: hall_closets
+      newkaku_00940f7e_a:
+        name: hall_shoes
+        aliasses:
+          - newkaku_004c7daa_a
+      newkaku_0006090a_b:
+        name: room
+        aliasses:
+          - newkaku_004c7daa_9
+      newkaku_004c7daa_4:
+        name: kitchen
+      newkaku_0093ca12_a:
+        name: bedroom
+        aliasses:
+          - newkaku_004c7daa_5
+          - newkaku_004c7daa_c
+      newkaku_004c7daa_b:
+        name: bedroom_lamp
+      newkaku_004c7daa_7:
+        name: hall_coat_hook
+      newkaku_004c7daa_8:
+        name: hall_dryer
+
+################################################################
+# CUSTOMIZE
+################################################################
+homeassistant:
+  customize:
+    light.bedroom:
+      friendly_name: "Hlavní světlo"
+      custom_ui_state_card: custom-ui
+      state_card_mode: break-slider
+      stretch_slider: true
+
+    light.bedroom_lamp:
+      friendly_name: "Lampa"
+      custom_ui_state_card: custom-ui
+      state_card_mode: break-slider
+      stretch_slider: true
+
+    light.hall_coat_hook:
+      friendly_name: "Věšák na bundy"
+        
+    light.hall_dryer:
+      friendly_name: "Sušák"
+
+    light.hall_shoes:
+      friendly_name: "Kumbál na boty"
+
+    light.hall_closets:
+      friendly_name: "Skříně"
+
+    light.kitchen:
+      friendly_name: "Hlavní světlo"
+      custom_ui_state_card: custom-ui
+      state_card_mode: break-slider
+      stretch_slider: true
+
+    light.living_room:
+      friendly_name: "Hlavní světlo"
+      custom_ui_state_card: custom-ui
+      state_card_mode: break-slider
+      stretch_slider: true
+
+    light.living_room_lamp:
+      friendly_name: "Lampa"
+      custom_ui_state_card: custom-ui
+      state_card_mode: break-slider
+      stretch_slider: true
+
+    light.room: 
+      friendly_name: "Hlavní světlo"
+      custom_ui_state_card: custom-ui
+      state_card_mode: break-slider
+      stretch_slider: true
+
+################################################################
+# GROUPS
+################################################################
+group:
+  kitchen_lights:
+    name: Světla
+    entities:
+      - light.kitchen
+
+  bedroom_lights:
+    name: Světla
+    entities:
+      - light.bedroom
+      - light.bedroom_lamp
+
+  hall_lights:
+    name: Světla
+    entities:
+      - light.hall_coat_hook
+      - light.hall_dryer
+      - light.hall_shoes
+      - light.hall_closets
+
+  livingroom_lights:
+    name: Světla
+    entities:
+      - light.living_room
+      - light.living_room_lamp
+
+  room_lights:
+    name: Světla
+    entities:
+      - light.room
+
+################################################################
+# SCENES
+################################################################
+
+################################################################
+# SCRIPTS
+################################################################

@@ -1,0 +1,55 @@
+################################################################
+# COMPONENTS
+################################################################
+
+shell_command:
+  kodi_back: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.Back \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
+  kodi_left: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.Left \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
+  kodi_right: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.Right \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
+  kodi_up: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.Up \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
+  kodi_down: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.Down \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
+  kodi_ok: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.Select \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
+  kodi_menu: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.ContextMenu \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
+
+  tv_on: 'irsend SEND_ONCE lg KEY_POWER'
+  tv_off: 'irsend SEND_ONCE lg KEY_POWER2'
+  tv_toggle: 'irsend SEND_START lg KEY_RESTART ; sleep 0.2 && irsend SEND_STOP lg KEY_RESTART'
+  tv_left: 'irsend SEND_ONCE lg KEY_LEFT'
+  tv_right: 'irsend SEND_ONCE lg KEY_RIGHT'
+  tv_up: 'irsend SEND_ONCE lg KEY_UP'
+  tv_down: 'irsend SEND_ONCE lg KEY_DOWN'
+  tv_ok: 'irsend SEND_ONCE lg KEY_OK'
+  tv_input_kodi: 'irsend SEND_ONCE lg KEY_DVD'
+  tv_input_tv: 'irsend SEND_ONCE lg KEY_TV'
+  tv_input_bt: 'irsend SEND_ONCE lg KEY_SAT'
+  tv_red: 'irsend SEND_ONCE lg KEY_RED'
+  tv_green: 'irsend SEND_ONCE lg KEY_GREEN'
+  tv_channel_down: 'irsend SEND_ONCE lg KEY_CHANNELDOWN'
+  tv_channel_up: 'irsend SEND_ONCE lg KEY_CHANNELUP'
+
+  tv_mode_bt: 'curl -X POST -H "Content-type: application/json" -d "{\"state\":\"bt\"}" "http://localhost:8123/api/states/sensor.tv_mode"'
+  tv_mode_kodi: 'curl -X POST -H "Content-type: application/json" -d "{\"state\":\"kodi\"}" "http://localhost:8123/api/states/sensor.tv_mode"'
+  tv_mode_tv: 'curl -X POST -H "Content-type: application/json" -d "{\"state\":\"tv\"}" "http://localhost:8123/api/states/sensor.tv_mode"'
+  av_state_on: 'curl -X POST -H "Content-type: application/json" -d "{\"state\":\"on\"}" "http://localhost:8123/api/states/sensor.av_state"'
+  av_state_off: 'curl -X POST -H "Content-type: application/json" -d "{\"state\":\"off\"}" "http://localhost:8123/api/states/sensor.av_state"'
+
+################################################################
+# CUSTOMIZE
+################################################################
+
+homeassistant:
+  customize:
+    media_player.lg_tv_remote:
+      friendly_name: Televize
+
+################################################################
+# GROUPS
+################################################################
+
+################################################################
+# SCENES
+################################################################
+
+################################################################
+# SCRIPTS
+################################################################

@@ -1,0 +1,44 @@
+################################################################
+# COMPONENTS
+################################################################
+
+################################################################
+# CUSTOMIZE
+################################################################
+
+homeassistant:
+  customize:
+    group.other:
+      order: 7
+
+################################################################
+# GROUPS
+################################################################
+
+group:
+  other:
+    name: Ostatní
+    view: yes
+    entities:
+      - device_tracker.marcelka_telefon
+      - device_tracker.pavel_telefon
+      - device_tracker.my_sensors
+      - group.system
+      - group.batteries
+
+  batteries:
+    name: Baterie
+    entities:
+      - sensor.palm_battery_template
+      - sensor.living_temp_batteries
+      - sensor.bedroom_temp_batteries
+      - sensor.kitchen_temp_batteries
+      - sensor.outside_temp_batteries
+
+################################################################
+# SCENES
+################################################################
+
+################################################################
+# SCRIPTS
+################################################################

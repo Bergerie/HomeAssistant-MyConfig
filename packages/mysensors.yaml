@@ -1,0 +1,212 @@
+################################################################
+# COMPONENTS
+################################################################
+
+mysensors:
+  gateways:
+    - device: '192.168.1.113'
+      persistence_file: '/home/homeassistant/.homeassistant/mysensors.json'
+      tcp_port: 5003
+  optimistic: false
+  persistence: true
+  retain: true
+  version: 2.0
+
+sensor:
+  - platform: mysensors
+
+  - platform: template
+    sensors:
+      living_temp_batteries:
+        value_template: >
+          {% if states('sensor.myslipo_1_0') %}
+            {{ states.sensor.myslipo_1_0.attributes["battery_level"] }}
+          {% else %}
+            None
+          {% endif %}
+        friendly_name: 'Teploměr obývák'
+        unit_of_measurement: '%'
+        icon_template: >
+          {% if states('sensor.myslipo_1_0') %}
+            {% set batt = states.sensor.myslipo_1_0.attributes["battery_level"] %}
+            {% if batt == 'unknown' %}
+              mdi:battery-unknown
+            {% elif batt > 95 %}
+              mdi:battery
+            {% elif batt > 85 %}
+              mdi:battery-90
+            {% elif batt > 75 %}
+              mdi:battery-80
+            {% elif batt > 65 %}
+              mdi:battery-70
+            {% elif batt > 55 %}
+              mdi:battery-60
+            {% elif batt > 45 %}
+              mdi:battery-50
+            {% elif batt > 35 %}
+              mdi:battery-40
+            {% elif batt > 25 %}
+              mdi:battery-30
+            {% elif batt > 15 %}
+              mdi:battery-20
+            {% elif batt > 10 %}
+              mdi:battery-10
+            {% else %}
+              mdi:battery-outline
+            {% endif %}
+          {% else %}
+            mdi:battery-unknown
+          {% endif %}
+      
+      outside_temp_batteries:
+        value_template: >
+          {% if states('sensor.myslipo_4_0') %}
+            {{ states.sensor.myslipo_4_0.attributes["battery_level"] }}
+          {% else %}
+            None
+          {% endif %}
+        friendly_name: 'Teploměr za oknem'
+        unit_of_measurement: '%'
+        icon_template: >
+          {% if states('sensor.myslipo_4_0') %}
+            {% set batt = states.sensor.myslipo_4_0.attributes["battery_level"] %}
+            {% if batt == 'unknown' %}
+              mdi:battery-unknown
+            {% elif batt > 95 %}
+              mdi:battery
+            {% elif batt > 85 %}
+              mdi:battery-90
+            {% elif batt > 75 %}
+              mdi:battery-80
+            {% elif batt > 65 %}
+              mdi:battery-70
+            {% elif batt > 55 %}
+              mdi:battery-60
+            {% elif batt > 45 %}
+              mdi:battery-50
+            {% elif batt > 35 %}
+              mdi:battery-40
+            {% elif batt > 25 %}
+              mdi:battery-30
+            {% elif batt > 15 %}
+              mdi:battery-20
+            {% elif batt > 10 %}
+              mdi:battery-10
+            {% else %}
+              mdi:battery-outline
+            {% endif %}
+          {% else %}
+            mdi:battery-unknown
+          {% endif %}
+
+      bedroom_temp_batteries:
+        value_template: >
+          {% if states('sensor.myslipo_2_0') %}
+            {{ states.sensor.myslipo_2_0.attributes["battery_level"] }}
+          {% else %}
+            None
+          {% endif %}
+        friendly_name: 'Teploměr ložnice'
+        unit_of_measurement: '%'
+        icon_template: >
+          {% if states('sensor.myslipo_2_0') %}
+            {% set batt = states.sensor.myslipo_2_0.attributes["battery_level"] %}
+            {% if batt == 'unknown' %}
+              mdi:battery-unknown
+            {% elif batt > 95 %}
+              mdi:battery
+            {% elif batt > 85 %}
+              mdi:battery-90
+            {% elif batt > 75 %}
+              mdi:battery-80
+            {% elif batt > 65 %}
+              mdi:battery-70
+            {% elif batt > 55 %}
+              mdi:battery-60
+            {% elif batt > 45 %}
+              mdi:battery-50
+            {% elif batt > 35 %}
+              mdi:battery-40
+            {% elif batt > 25 %}
+              mdi:battery-30
+            {% elif batt > 15 %}
+              mdi:battery-20
+            {% elif batt > 10 %}
+              mdi:battery-10
+            {% else %}
+              mdi:battery-outline
+            {% endif %}
+          {% else %}
+            mdi:battery-unknown
+          {% endif %}
+
+      kitchen_temp_batteries:
+        value_template: >
+          {% if states('sensor.myslipo_3_0') %}
+            {{ states.sensor.myslipo_3_0.attributes["battery_level"] }}
+          {% else %}
+            None
+          {% endif %}
+        friendly_name: 'Teploměr kuchyně'
+        unit_of_measurement: '%'
+        icon_template: >
+          {% if states('sensor.myslipo_3_0') %}
+            {% set batt = states.sensor.myslipo_3_0.attributes["battery_level"] %}
+            {% if batt == 'unknown' %}
+              mdi:battery-unknown
+            {% elif batt > 95 %}
+              mdi:battery
+            {% elif batt > 85 %}
+              mdi:battery-90
+            {% elif batt > 75 %}
+              mdi:battery-80
+            {% elif batt > 65 %}
+              mdi:battery-70
+            {% elif batt > 55 %}
+              mdi:battery-60
+            {% elif batt > 45 %}
+              mdi:battery-50
+            {% elif batt > 35 %}
+              mdi:battery-40
+            {% elif batt > 25 %}
+              mdi:battery-30
+            {% elif batt > 15 %}
+              mdi:battery-20
+            {% elif batt > 10 %}
+              mdi:battery-10
+            {% else %}
+              mdi:battery-outline
+            {% endif %}
+          {% else %}
+            mdi:battery-unknown
+          {% endif %}
+
+################################################################
+# CUSTOMIZE
+################################################################
+
+homeassistant:
+  customize:
+    sensor.myslipo_1_0:
+      friendly_name: 'Obývák'
+
+    sensor.myslipo_2_0:
+      friendly_name: 'Ložnice'
+
+    sensor.myslipo_3_0:
+      friendly_name: 'Kuchyně'
+
+    sensor.myslipo_4_0:
+      friendly_name: 'Teplota za oknem'
+
+################################################################
+# GROUPS
+################################################################
+
+################################################################
+# SCENES
+################################################################
+
+################################################################
+# SCRIPTS
+################################################################

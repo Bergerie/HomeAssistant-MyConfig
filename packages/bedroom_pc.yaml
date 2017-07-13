@@ -1,0 +1,50 @@
+################################################################
+# COMPONENTS
+################################################################
+
+switch:
+  - platform: mqtt
+    name: "socket_table"
+    command_topic: "socket-table/relay0"
+    state_topic: "socket-table/relay0/state"
+    payload_on: 'ON'
+    payload_off: 'OFF'
+    optimistic: false
+    qos: 1
+
+################################################################
+# CUSTOMIZE
+################################################################
+
+homeassistant:
+  customize:
+    script.bedroom_pc_off:
+      friendly_name: Vypnout počítač v ložnici
+      icon: mdi:laptop-off
+
+    switch.socket_table:
+      friendly_name: Zásuvka u počítače
+      icon: mdi:power-socket-eu
+
+    device_tracker.bedroom_pc:
+      icon: mdi:monitor
+
+################################################################
+# GROUPS
+################################################################
+
+################################################################
+# SCENES
+################################################################
+
+################################################################
+# SCRIPTS
+################################################################
+script:
+  bedroom_pc_off:
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "room/pc"
+          qos: 2
+          payload: 'shutdown'
