@@ -23,8 +23,8 @@ Configuration variables:
   - **heat_index_f**: Heat index (°F)
   - **temp_c**: Temperature (°C)
   - **temp_f**: Temperature (°F)
-  - **feels_like_c**: Feels like temp (°C)
-  - **feels_like_f**: Feels like temp (°F)
+  - **humidex_c**: Humidex (°C)
+  - **humidex_f**: Humidex (°F)
   - **wind_degrees**: Where the wind is coming from in degrees, with true north at 0° and progressing clockwise.
   - **wind_dir**: Wind Direction as string ie.: N, NW, etc.
   - **wind_gust_kph**: Wind Gust (km/h)
@@ -53,8 +53,8 @@ sensor:
       - heat_index_f
       - temp_c
       - temp_f
-      - feels_like_c
-      - feels_like_f
+      - humidex_c
+      - humidex_f
       - wind_degrees
       - wind_dir
       - wind_gust_kph

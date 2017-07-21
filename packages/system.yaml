@@ -3,21 +3,6 @@
 ################################################################
 
 sensor:
-  - platform: clientraw
-    url: !secret clientraw_url
-    interval: 12
-    monitored_conditions:
-      - dewpoint_c
-      - temp_c
-      - feels_like_c
-      - wind_dir
-      - wind_gust_kph
-      - wind_kph
-      - symbol
-      - daily_rain
-      - pressure
-      - humidity
-
   - platform: systemmonitor
     resources:
     - type: since_last_boot
@@ -153,7 +138,3 @@ group:
 ################################################################
 # SCRIPTS
 ################################################################
-script:
-  restart:
-    sequence:
-      - service: homeassistant.restart

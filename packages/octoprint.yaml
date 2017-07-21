@@ -61,6 +61,8 @@ group:
   octoprint:
     name: OctoPrint
     entities:
+      - automation.konec_3d_tisku
+      - automation.chyba_3d_tisku
       - sensor.octoprint_current_state
       - sensor.octoprint_actual_bed_temp
       - sensor.octoprint_target_bed_temp

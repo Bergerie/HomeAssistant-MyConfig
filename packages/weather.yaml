@@ -7,6 +7,21 @@ sensor:
     monitored_conditions:
       - precipitation
 
+  - platform: clientraw
+    url: !secret clientraw_url
+    interval: 12
+    monitored_conditions:
+      - dewpoint_c
+      - temp_c
+      - humidex_c
+      - wind_dir
+      - wind_gust_kph
+      - wind_kph
+      - symbol
+      - daily_rain
+      - pressure
+      - humidity
+
 ################################################################
 # CUSTOMIZE
 ################################################################
@@ -16,7 +31,7 @@ homeassistant:
     sensor.clientraw_temperature_c:
       friendly_name: Teplota
 
-    sensor.clientraw_feels_like_temp_c:
+    sensor.clientraw_humidex_c:
       friendly_name: Pocitová teplota
 
     sensor.clientraw_humidity:
@@ -60,7 +75,7 @@ group:
     entities:
       - sensor.myslipo_4_0
       - sensor.clientraw_temperature_c
-      - sensor.clientraw_feels_like_temp_c
+      - sensor.clientraw_humidex_c
       - sensor.clientraw_humidity
       - sensor.clientraw_pressure
       - sensor.clientraw_wind_direction

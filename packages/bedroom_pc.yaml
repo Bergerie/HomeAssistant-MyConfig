@@ -48,3 +48,6 @@ script:
           topic: "room/pc"
           qos: 2
           payload: 'shutdown'
+      - service: switch.turn_off
+        data:
+          entity_id: switch.socket_table

@@ -9,6 +9,10 @@ homeassistant:
   packages: !include_dir_named packages/
 
 frontend:
+  # themes:
+  #   dark:
+  #     primary-color: #2f2f2f
+
 http:
 updater:
 sun:
@@ -55,11 +59,11 @@ logbook:
 
 logger:
  default: warning
- #logs:
+ # logs:
     # homeassistant.components.mysensors: debug
     # mysensors.mysensors: debug
     # homeassistant.components.rflink: debug
-    # custom_components.sensor.clientraw: info
+    # custom_components.sensor.attributes: debug
     # homeassistant.components.device_tracker: debug
 
 zone cottage:
@@ -101,9 +105,11 @@ device_tracker:
   #   password: !secret router_password
   - platform: mqtt
     devices:
-      pokoj_pc: room/pc
+      bedroom_pc_mqtt: room/pc
 
 lirc:
+
+# battery_level:
 
 influxdb:
   username: !secret influxdb_username
@@ -117,8 +123,9 @@ influxdb:
       - sensor.myslipo_1_0
       - sensor.myslipo_2_0
       - sensor.myslipo_3_0
+      - sensor.myslipo_4_0
       - sensor.clientraw_temperature_c
-      - sensor.clientraw_feels_like_temp_c
+      - sensor.clientraw_humidex_c
       - sensor.clientraw_pressure
       - sensor.clientraw_daily_rain
       - sensor.kitchen_temp_batteries

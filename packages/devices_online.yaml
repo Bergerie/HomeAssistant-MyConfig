@@ -6,33 +6,27 @@
 # CUSTOMIZE
 ################################################################
 
-homeassistant:
-  customize:
-    group.other:
-      order: 7
+# homeassistant:
+#   customize:
 
 ################################################################
 # GROUPS
 ################################################################
 
 group:
-  other:
-    name: Ostatní
-    view: yes
+  devices_online:
+    name: Ložnice
     entities:
-      - group.system
-      - group.batteries
-      - group.devices_online
-      - group.control_internet
+      - device_tracker.bedroom_pc
+      - device_tracker.octoprint
+      - device_tracker.bedroom_pc_mqtt
+      - device_tracker.marcelka_telefon
+      - device_tracker.pavel_telefon
+      - device_tracker.my_sensors
+      - device_tracker.kodi
+      - device_tracker.marcelka_pc
+      - device_tracker.mqtt_display
 
-  batteries:
-    name: Baterie
-    entities:
-      - sensor.plant1_battery_template
-      - sensor.myslipo_1_0_battery_level
-      - sensor.myslipo_2_0_battery_level
-      - sensor.myslipo_3_0_battery_level
-      - sensor.myslipo_4_0_battery_level
 
 ################################################################
 # SCENES

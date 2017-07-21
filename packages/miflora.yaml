@@ -10,45 +10,45 @@ sensor:
       - conductivity
       - battery
       - light
-    name: palm
+    name: plant1
 
   - platform: template
     sensors:
-      palm_battery_template:
+      plant1_battery_template:
         value_template: >
-          {% if states('sensor.palm_battery') %}
-            {{ states.sensor.palm_battery.state }}
-          {% else %}
-            False
+          {% if states('sensor.plant1_battery') | int %}
+            {{ states('sensor.plant1_battery') | float }}
           {% endif %}
-        friendly_name: 'Vlhkost palma'
+        friendly_name: 'Kala baterie'
         unit_of_measurement: '%'
         icon_template: >
-          {% set batt = states('sensor.palm_battery')|default('unknown') %}
-          {% if batt == 'unknown' %}
-            mdi:battery-unknown
-          {% elif batt > 95 %}
-            mdi:battery
-          {% elif batt > 85 %}
-            mdi:battery-90
-          {% elif batt > 75 %}
-            mdi:battery-80
-          {% elif batt > 65 %}
-            mdi:battery-70
-          {% elif batt > 55 %}
-            mdi:battery-60
-          {% elif batt > 45 %}
-            mdi:battery-50
-          {% elif batt > 35 %}
-            mdi:battery-40
-          {% elif batt > 25 %}
-            mdi:battery-30
-          {% elif batt > 15 %}
-            mdi:battery-20
-          {% elif batt > 10 %}
-            mdi:battery-10
+          {% if states('sensor.plant1_battery') | int %}
+            {% set batt = states('sensor.plant1_battery') | float %}
+            {% if batt > 95 %}
+              mdi:battery
+            {% elif batt > 85 %}
+              mdi:battery-90
+            {% elif batt > 75 %}
+              mdi:battery-80
+            {% elif batt > 65 %}
+              mdi:battery-70
+            {% elif batt > 55 %}
+              mdi:battery-60
+            {% elif batt > 45 %}
+              mdi:battery-50
+            {% elif batt > 35 %}
+              mdi:battery-40
+            {% elif batt > 25 %}
+              mdi:battery-30
+            {% elif batt > 15 %}
+              mdi:battery-20
+            {% elif batt > 10 %}
+              mdi:battery-10
+            {% else %}
+              mdi:battery-outline
+            {% endif %}
           {% else %}
-            mdi:battery-outline
+            mdi:battery-unknown
           {% endif %}
 
 ################################################################
@@ -57,15 +57,15 @@ sensor:
 
 homeassistant:
   customize:
-    sensor.palm_moisture:
+    sensor.plant1_moisture:
       friendly_name: 'Vlhost půdy'
       icon: mdi:water-percent
 
-    sensor.palm_conductivity:
+    sensor.plant1_conductivity:
       friendly_name: 'Hnojivo'
       icon: mdi:test-tube
 
-    sensor.palm_light_intensity:
+    sensor.plant1_light_intensity:
       friendly_name: Světelné podmínky
       icon: mdi:white-balance-sunny
 
@@ -74,12 +74,12 @@ homeassistant:
 ################################################################
 
 group:
-  palm_moisture:
-    name: Palma
+  plant1_moisture:
+    name: Kala
     entities:  
-      - sensor.palm_moisture
-      - sensor.palm_conductivity
-      - sensor.palm_light_intensity
+      - sensor.plant1_moisture
+      - sensor.plant1_conductivity
+      - sensor.plant1_light_intensity
 
 ################################################################
 # SCENES

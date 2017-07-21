@@ -1,7 +1,6 @@
 import asyncio
 from datetime import timedelta
 import logging
-from random import randrange
 from xml.parsers.expat import ExpatError
 
 import async_timeout
@@ -30,8 +29,8 @@ SENSOR_TYPES = {
     'heat_index_f': ['Heat index (°F)', TEMP_FAHRENHEIT],
     'temp_c': ['Temperature (°C)', TEMP_CELSIUS],
     'temp_f': ['Temperature (°F)', TEMP_FAHRENHEIT],
-    'feels_like_c': ['Feels like temp (°C)', TEMP_CELSIUS],
-    'feels_like_f': ['Feels like temp (°F)', TEMP_FAHRENHEIT],
+    'humidex_c': ['Humidex (°C)', TEMP_CELSIUS],
+    'humidex_f': ['Humidex (°F)', TEMP_FAHRENHEIT],
     'wind_degrees': ['Wind Degrees', '°'],
     'wind_dir': ['Wind Direction', None],
     'wind_gust_kph': ['Wind Gust (km/h)', 'km/h'],
@@ -52,7 +51,7 @@ CONF_INTERVAL = 'interval'
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_MONITORED_CONDITIONS, default=[]):
         vol.All(cv.ensure_list, [vol.In(SENSOR_TYPES.keys())]),
-    vol.Required(CONF_URL, default=[]): cv.string,
+    vol.Required(CONF_URL, default=[]): cv.url,
     vol.Optional(CONF_INTERVAL, default=15):
         vol.All(vol.Coerce(int), vol.Range(min=1, max=59)),
 })
@@ -240,10 +239,10 @@ class ClientrawData(object):
                 celsius = float(self.data[112])
                 new_state = round(9.0/5.0 * celsius + 32, 2)
 
-            elif dev.type == 'feels_like_c':
+            elif dev.type == 'humidex_c':
                 new_state = float(self.data[44])
 
-            elif dev.type == 'feels_like_f':
+            elif dev.type == 'humidex_f':
                 celsius = float(self.data[44])
                 new_state = round(9.0/5.0 * celsius + 32, 2)
 

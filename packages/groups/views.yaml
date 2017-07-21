@@ -19,19 +19,7 @@ group:
       - sensor.yr_precipitation
       - group.weather
       - group.my_automation
-      - group.lazygardener
-      - script.restart
-
-  my_automation:
-    name: Skripty
-    control: hidden
-    entities:
-      - script.room_pc_off
-      - script.restart
-      - automation.vypnout_svetla_pri_vychodu_slunce
-      - automation.automaticke_nocni_svetlo
-      - automation.konec_3d_tisku
-      - automation.chyba_3d_tisku
+      
 
 ################################################################
 # SCENES

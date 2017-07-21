@@ -24,10 +24,17 @@ group:
       - sensor.av_state
       - sensor.tv_mode
       - group.livingroom_lights
-      - group.palm_moisture
+      - group.plant1_moisture
       - sensor.myslipo_1_0
       - media_player.lg_tv_remote
       - media_player.kodi
+      - group.livingroom_actions
+
+  livingroom_actions:
+    name: Akce
+    entities:
+      - automation.vypnout_svetla_pri_vychodu_slunce
+      - automation.automaticke_nocni_svetlo
 
 ################################################################
 # SCENES
