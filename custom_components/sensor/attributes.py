@@ -96,7 +96,7 @@ def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
                 {{% elif batt > 55 %}}\
                 mdi:battery-60\
                 {{% elif batt > 45 %}}\
-                mdi:battery-\
+                mdi:battery-50\
                 {{% elif batt > 35 %}}\
                 mdi:battery-40\
                 {{% elif batt > 25 %}}\
