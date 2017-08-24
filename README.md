@@ -22,7 +22,7 @@ This is my [Home Assistant](https://home-assistant.io/) configuration running on
 - PIR sensor attached to Raspberry Pi
 - [OctoPrint](http://octoprint.org/)
 - Sonoff with [custom FW](../../../MQTT-relay)
-- [ESP8266 based TFT display](MQTT-weather-display)
+- [ESP8266 based TFT display](../../../MQTT-weather-display)
 
 **Automations:**
 - reads IR remote from Pioneer A/V and transmitting codes for TV - that's one remote to rule them all!

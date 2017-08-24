@@ -9,15 +9,15 @@ homeassistant:
   packages: !include_dir_named packages/
 
 frontend:
-  # themes:
-  #   dark:
-  #     primary-color: #2f2f2f
+  themes: !include_dir_merge_named themes/
 
 http:
 updater:
+  include_used_components: true
 sun:
 config:
 # python_scripts:
+
 recorder:
   # Delete events and states older than 30 days
   purge_days: 30
@@ -33,11 +33,11 @@ history:
       - sensor.clientraw_wind_direction
       - persistent_notification.invalid_config
     domains:
-      - automation
       - group
       - updater
       - script
       - input_slider
+      - automation
 
 logbook:
   exclude:
@@ -66,28 +66,9 @@ logger:
     # custom_components.sensor.attributes: debug
     # homeassistant.components.device_tracker: debug
 
-zone cottage:
-  name: Chalupa
-  latitude: !secret latitude_cottage
-  longitude: !secret longitude_cottage
-  radius: 200
-  icon: mdi:home
-
 #################################
 ###       COMPONENTS          ###
 #################################
-
-media_player:
-  - platform: kodi
-    host: 192.168.1.105
-    turn_off_action: shutdown
-  - platform: lg_netcast
-    host: 192.168.1.106
-    access_token: !secret tv_token
-  - platform: spotify
-    client_id:  !secret spotify_client
-    client_secret: !secret spotify_secret
-
 mqtt:
   broker: localhost
   port: 1883
@@ -103,13 +84,13 @@ device_tracker:
   #   host: 192.168.1.1
   #   username: !secret router_username
   #   password: !secret router_password
-  - platform: mqtt
-    devices:
-      bedroom_pc_mqtt: room/pc
 
 lirc:
 
-# battery_level:
+notify:
+  - name: pushbullet
+    platform: pushbullet
+    api_key: !secret pushbullet_api
 
 influxdb:
   username: !secret influxdb_username
@@ -135,9 +116,5 @@ influxdb:
       - sensor.palm_conductivity
       - sensor.palm_light_intensity
 
-notify:
-  - name: pushbullet
-    platform: pushbullet
-    api_key: !secret pushbullet_api
-
 automation: !include automation/automations.yaml
+

@@ -5,8 +5,8 @@
 switch:
   - platform: mqtt
     name: "lazygardener_herbs"
-    command_topic: "lazygardener/relay0"
-    state_topic: "lazygardener/relay0/state"
+    command_topic: "LazyGardener/relay0"
+    state_topic: "LazyGardener/relay0/state"
     payload_on: 'ON'
     payload_off: 'OFF'
     optimistic: false
@@ -14,8 +14,8 @@ switch:
 
   - platform: mqtt
     name: "lazygardener_fruit"
-    command_topic: "lazygardener/relay1"
-    state_topic: "lazygardener/relay1/state"
+    command_topic: "LazyGardener/relay1"
+    state_topic: "LazyGardener/relay1/state"
     payload_on: 'ON'
     payload_off: 'OFF'
     optimistic: false
@@ -23,8 +23,8 @@ switch:
 
   - platform: mqtt
     name: "lazygardener_flowers"
-    command_topic: "lazygardener/relay2"
-    state_topic: "lazygardener/relay2/state"
+    command_topic: "LazyGardener/relay2"
+    state_topic: "LazyGardener/relay2/state"
     payload_on: 'ON'
     payload_off: 'OFF'
     optimistic: false
@@ -32,8 +32,8 @@ switch:
 
   - platform: mqtt
     name: "lazygardener_veg"
-    command_topic: "lazygardener/relay3"
-    state_topic: "lazygardener/relay3/state"
+    command_topic: "LazyGardener/relay3"
+    state_topic: "LazyGardener/relay3/state"
     payload_on: 'ON'
     payload_off: 'OFF'
     optimistic: false
@@ -41,8 +41,8 @@ switch:
 
   - platform: mqtt
     name: "lazygardener_shade_flowers"
-    command_topic: "lazygardener/relay4"
-    state_topic: "lazygardener/relay4/state"
+    command_topic: "LazyGardener/relay4"
+    state_topic: "LazyGardener/relay4/state"
     payload_on: 'ON'
     payload_off: 'OFF'
     optimistic: false

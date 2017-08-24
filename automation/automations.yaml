@@ -1,84 +1,89 @@
 - id: in_temp_changed
+  initial_state: 'on'
   alias: in temp changed
   trigger:
     platform: state
     entity_id: sensor.myslipo_1_0
   condition:
-    - condition: template
-      value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
+    condition: template
+    value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
   action:
     service: mqtt.publish
     data_template:
       topic: "display/in_temp"
       qos: 1
       retain: true
-      payload: >-
+      payload: >
         {%- set in_temp = states.sensor.myslipo_1_0.state -%}
         {%- if in_temp is not none and in_temp != "unavailable" -%}
           {"temp": {{ in_temp }} }
         {%- endif -%}
 
 - id: weather_icon_changed
+  initial_state: 'on'
   alias: weather icon changed
   trigger:
     platform: state
     entity_id: sensor.clientraw_symbol
   condition:
-    - condition: template
-      value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
+    condition: template
+    value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
   action:
     service: mqtt.publish
     data_template:
       topic: "display/forecast"
       qos: 1
       retain: true
-      payload: >-
+      payload: >
         {%- set symbol = states.sensor.clientraw_symbol.state -%}
         {%- if symbol is not none and symbol != "unavailable" -%}
           {"icon": {{ symbol }} }
         {%- endif -%}
 
 - id: out_temp_changed
+  initial_state: 'on'
   alias: out temp changed
   trigger:
     platform: state
     entity_id: sensor.clientraw_temperature_c
   condition:
-    - condition: template
-      value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
+    condition: template
+    value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
   action:
     service: mqtt.publish
     data_template:
       topic: "display/out_temp"
       qos: 1
       retain: true
-      payload: >-
+      payload: >
         {%- set out_temp = states.sensor.clientraw_temperature_c.state -%}
         {%- if out_temp is not none and out_temp != "unavailable" -%}
           {"temp": {{ out_temp }} }
         {%- endif -%}
 
 - id: out_feel_temp_changed
+  initial_state: 'on'
   alias: out feel temp changed
   trigger:
     platform: state
     entity_id: sensor.clientraw_feels_like_temp_c
   condition:
-    - condition: template
-      value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
+    condition: template
+    value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
   action:
     service: mqtt.publish
     data_template:
       topic: "display/out_temp_feel"
       qos: 1
       retain: true
-      payload: >-
+      payload: >
         {%- set out_temp_feel = states.sensor.myslipo_4_0.state -%}
         {%- if out_temp_feel is not none and out_temp_feel != "unavailable" -%}
           {"temp": {{ out_temp_feel }} }
         {%- endif -%}
 
 - id: IR_TV_power_toggle
+  initial_state: 'on'
   alias: IR TV power toggle
   hide_entity: True
   trigger:
@@ -90,6 +95,7 @@
     - service: shell_command.tv_toggle
 
 - id: IR_AV_state_toggle
+  initial_state: 'on'
   alias: IR AV state toggle
   hide_entity: True
   trigger:
@@ -106,6 +112,7 @@
         {% endif %}
 
 - id: IR_TV_channel_up
+  initial_state: 'on'
   alias: IR TV channel up
   hide_entity: True
   trigger:
@@ -117,6 +124,7 @@
     service: shell_command.tv_channel_up
 
 - id: IR_TV_channel_down
+  initial_state: 'on'
   alias: IR TV channel down
   hide_entity: True
   trigger:
@@ -128,6 +136,7 @@
     service: shell_command.tv_channel_down
 
 - id: IR_TV_left
+  initial_state: 'on'
   alias: IR TV left
   hide_entity: True
   trigger:
@@ -144,6 +153,7 @@
       {% endif %}
 
 - id: IR_TV_right
+  initial_state: 'on'
   alias: IR TV right
   hide_entity: True
   trigger:
@@ -160,6 +170,7 @@
       {% endif %}
 
 - id: IR_TV_up
+  initial_state: 'on'
   alias: IR TV up
   hide_entity: True
   trigger:
@@ -176,6 +187,7 @@
       {% endif %}
 
 - id: IR_TV_down
+  initial_state: 'on'
   alias: IR TV down
   hide_entity: True
   trigger:
@@ -192,6 +204,7 @@
       {% endif %}
 
 - id: IR_TV_ok
+  initial_state: 'on'
   alias: IR TV ok
   hide_entity: True
   trigger:
@@ -208,6 +221,7 @@
       {% endif %}
 
 - id: IR_TV_DVD
+  initial_state: 'on'
   alias: IR TV DVD
   hide_entity: True
   trigger:
@@ -220,6 +234,7 @@
     - service: shell_command.tv_mode_kodi
 
 - id: IR_TV_mode_bt
+  initial_state: 'on'
   alias: IR TV mode bt
   hide_entity: True
   trigger:
@@ -231,6 +246,7 @@
     service: shell_command.tv_mode_bt
 
 - id: IR_TV
+  initial_state: 'on'
   alias: IR TV
   hide_entity: True
   trigger:
@@ -243,6 +259,7 @@
     - service: shell_command.tv_mode_tv
 
 - id: IR_TV_red
+  initial_state: 'on'
   alias: IR TV red
   hide_entity: True
   trigger:
@@ -254,6 +271,7 @@
     service: shell_command.tv_red
 
 - id: IR_TV_back
+  initial_state: 'on'
   alias: IR TV back
   hide_entity: True
   trigger:
@@ -265,6 +283,7 @@
     service: shell_command.kodi_back
 
 - id: pir_night_light
+  initial_state: 'on'
   alias: Automatické noční světlo
   trigger:
     platform: state
@@ -296,6 +315,7 @@
       brightness: 50
 
 - id: lights_off_sunrise
+  initial_state: 'on'
   alias: Vypnout světla při východu slunce
   trigger:
     platform: sun
@@ -306,6 +326,7 @@
     entity_id: light.obyvak_lampa
 
 - id: update_notifications
+  initial_state: 'on'
   alias: Notifikace o nové verzi systému
   trigger:
     - platform: state
@@ -317,6 +338,7 @@
 
 
 - id: disk_alarm_use
+  initial_state: 'on'
   alias: Hlídání volného místa na disku
   trigger:
     - platform: numeric_state
@@ -332,6 +354,7 @@
         message: 'Dochází místo na disku HA: {{ states.sensor.disk_use_.state }}%!'
 
 - id: check_pc_room_state
+  initial_state: 'on'
   alias: Check PC is on
   trigger:
     platform: homeassistant
@@ -344,6 +367,7 @@
       payload: 'status'
 
 - id: 3D_print_end
+  initial_state: 'on'
   alias: Konec 3D tisku
   initial_state: 'off'
   trigger:
@@ -359,6 +383,7 @@
       entity_id: automation.konec_3d_tisku
         
 - id: 3D_print_error
+  initial_state: 'on'
   alias: Chyba 3D tisku
   trigger:
     platform: state
@@ -369,3 +394,86 @@
     - service: notify.pushbullet
       data_template:
         message: '3D tisk - CHYBA'
+
+# - id: test1
+#   initial_state: 'on'
+#   alias: 'Telegram bot that repeats text'
+#   hide_entity: true
+#   trigger:
+#     platform: event
+#     event_type: telegram_text
+#   action:
+#     - service: telegram_bot.send_message
+#       data_template:
+#         title: '*Dumb automation*'
+#         target: '{{ trigger.event.data.user_id }}'
+#         message: 'You said: {{ trigger.event.data.text }}'
+#         disable_notification: true
+#         inline_keyboard:
+#           - "Edit message:/edit_msg, Don't:/do_nothing"
+#           - "Remove this button:/remove button"
+
+# - id: test2
+#   initial_state: 'on'
+#   alias: 'Telegram bot that edits the last sent message'
+#   hide_entity: true
+#   trigger:
+#     platform: event
+#     event_type: telegram_callback
+#     event_data:
+#       data: '/edit_msg'
+#   action:
+#     - service: telegram_bot.answer_callback_query
+#       data_template:
+#         callback_query_id: ''
+#         message: 'Editing the message!'
+#         show_alert: true
+#     - service: telegram_bot.edit_message
+#       data_template:
+#         message_id: '{{ trigger.event.data.message.message_id }}'
+#         chat_id: '{{ trigger.event.data.user_id }}'
+#         title: '*Message edit*'
+#         message: >
+#           Callback received from {% raw %}{{ trigger.event.data.from_first }}.
+#           Message id: {{ trigger.event.data.message.message_id }}.
+#           Data: {{ trigger.event.data.data }}
+#         inline_keyboard:
+#           - "Edit message:/edit_msg, Don't:/do_nothing"
+#           - "Remove this button:/remove button"
+
+# - id: test3
+#   initial_state: 'on'
+#   alias: 'Telegram bot that edits the keyboard'
+#   hide_entity: true
+#   trigger:
+#     platform: event
+#     event_type: telegram_callback
+#     event_data:
+#       data: '/remove button'
+#   action:
+#     - service: telegram_bot.answer_callback_query
+#       data_template:
+#         callback_query_id: '{{ trigger.event.data.id }}'
+#         message: 'Callback received for editing the inline keyboard!'
+#     - service: telegram_bot.edit_replymarkup
+#       data_template:
+#         message_id: 'last'
+#         chat_id: '{{ trigger.event.data.user_id }}'
+#         inline_keyboard:
+#           - "Edit message:/edit_msg, Don't:/do_nothing"
+
+# - id: test4
+#   initial_state: 'on'
+#   alias: 'Telegram bot that simply acknowledges'
+#   hide_entity: true
+#   trigger:
+#     platform: event
+#     event_type: telegram_callback
+#     event_data:
+#       data: '/do_nothing'
+#   action:
+#     - service: telegram_bot.answer_callback_query
+#       data_template:
+#         callback_query_id: '{{ trigger.event.data.id }}'
+#         message: 'OK, you said no!'
+

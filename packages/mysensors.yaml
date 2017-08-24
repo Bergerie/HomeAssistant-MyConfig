@@ -34,6 +34,9 @@ homeassistant:
     sensor.myslipo_1_0:
       friendly_name: 'Obývák'
 
+    sensor.myslipo_1_0_battery_level:
+      friendly_name: 'Baterie obývák'
+
     sensor.myslipo_2_0:
       friendly_name: 'Ložnice'
 

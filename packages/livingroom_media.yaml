@@ -1,16 +1,20 @@
 ################################################################
 # COMPONENTS
 ################################################################
+media_player:
+  - platform: kodi
+    host: !secret kodi_ip
+    turn_off_action:
+      service: media_player.kodi_call_method
+      data:
+        entity_id: media_player.kodi
+        method: System.Shutdown
+
+  - platform: lg_netcast
+    host: !secret tv_ip
+    access_token: !secret tv_token
 
 shell_command:
-  kodi_back: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.Back \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
-  kodi_left: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.Left \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
-  kodi_right: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.Right \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
-  kodi_up: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.Up \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
-  kodi_down: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.Down \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
-  kodi_ok: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.Select \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
-  kodi_menu: 'curl -X POST -H "Content-type: application/json" -d "{\"jsonrpc\": \"2.0\", \"method\": \"Input.ContextMenu \", \"params\": { \"playerid\": 0 }, \"id\": 1}" "kodi@http://192.168.1.105:8080/jsonrpc"'
-
   tv_on: 'irsend SEND_ONCE lg KEY_POWER'
   tv_off: 'irsend SEND_ONCE lg KEY_POWER2'
   tv_toggle: 'irsend SEND_START lg KEY_RESTART ; sleep 0.2 && irsend SEND_STOP lg KEY_RESTART'

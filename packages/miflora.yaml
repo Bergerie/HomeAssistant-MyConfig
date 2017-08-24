@@ -51,6 +51,14 @@ sensor:
             mdi:battery-unknown
           {% endif %}
 
+plant:
+  kala:
+    sensors:
+      moisture: sensor.plant1_moisture
+      conductivity: sensor.plant1_conductivity
+    min_moisture: 20
+    min_conductivity: 300
+
 ################################################################
 # CUSTOMIZE
 ################################################################
@@ -77,6 +85,7 @@ group:
   plant1_moisture:
     name: Kala
     entities:  
+      - plant.kala
       - sensor.plant1_moisture
       - sensor.plant1_conductivity
       - sensor.plant1_light_intensity
