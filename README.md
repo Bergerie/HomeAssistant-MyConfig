@@ -2,7 +2,7 @@
 This is my [Home Assistant](https://home-assistant.io/) configuration running on Raspberry Pi 3, installed using [Hassbian](https://home-assistant.io/getting-started/hassbian-installation/)
 
 **Software running:**
-- Home Assistant
+- Home Assistant with [custom-ui](https://github.com/andrey-git/home-assistant-custom-ui)
 - InfluxDB: for long term data analysis
 - Grafana: to visualise InfluxDB data into pretty charts
 - MySensors Gateway: catching temperature from each room
@@ -11,7 +11,7 @@ This is my [Home Assistant](https://home-assistant.io/) configuration running on
 
 
 **Devices I have :**
-- [MySensors temperature nodes](../../../MySLipo)
+- [MySensors temperature/reed-swith nodes](../../../MySLipo)
 - [LazyGardener](../../../LazyGardener): My own irrigation controller
 - LG smart TV
 - [RFLink](http://www.nemcon.nl/blog2/) to read 433mHz things, connected over GPIO serial port
@@ -21,8 +21,9 @@ This is my [Home Assistant](https://home-assistant.io/) configuration running on
 - Xiaomi Mi Flora: controls plants soil moisture
 - PIR sensor attached to Raspberry Pi
 - [OctoPrint](http://octoprint.org/)
-- Sonoff with [custom FW](../../../MQTT-relay)
+- Sonoff with [custom FW](../../../MQTT-relay) and [espurna](https://bitbucket.org/xoseperez/espurna)
 - [ESP8266 based TFT display](../../../MQTT-weather-display)
+- [Broadlink RM3 mini](http://www.ibroadlink.com/rmMini3/)
 
 **Automations:**
 - reads IR remote from Pioneer A/V and transmitting codes for TV - that's one remote to rule them all!
@@ -33,6 +34,9 @@ This is my [Home Assistant](https://home-assistant.io/) configuration running on
 - when 3D print ends send me notification - only on request
 - turn on each LazyGardener's valves one by one for time selected from input_slider
 - turn on selected LazyGardener's valve with auto turn off timeout feature
+
+![homescreen](./images/HomeAssistant.png)
+![LazyGardener](./images/HomeAssistant-LazyGardener.png)
 
 ### Todo List
 - scenes: dim lights when playing movie on Kodi

@@ -1,0 +1,19 @@
+sensor:
+  - platform: yr
+    monitored_conditions:
+      - precipitation
+
+  - platform: clientraw
+    url: !secret clientraw_url
+    interval: 12
+    monitored_conditions:
+      - dewpoint_c
+      - temp_c
+      - humidex_c
+      - wind_dir
+      - wind_gust_kph
+      - wind_kph
+      - symbol
+      - daily_rain
+      - pressure
+      - humidity

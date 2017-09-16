@@ -1,0 +1,15 @@
+hall:
+  view: yes
+  name: Chodba
+  entities:
+    - binary_sensor.myslipo_reed_5_2
+    - binary_sensor.myslipo_reed_6_1
+    - group.hall_lights
+
+hall_lights:
+  name: Světla
+  entities:
+    - light.hall_coat_hook
+    - light.hall_dryer
+    - light.hall_shoes
+    - light.hall_closets

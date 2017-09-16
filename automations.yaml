@@ -367,9 +367,8 @@
       payload: 'status'
 
 - id: 3D_print_end
-  initial_state: 'on'
-  alias: Konec 3D tisku
   initial_state: 'off'
+  alias: Konec 3D tisku
   trigger:
     platform: state
     entity_id: binary_sensor.octoprint_printing
@@ -394,6 +393,18 @@
     - service: notify.pushbullet
       data_template:
         message: '3D tisk - CHYBA'
+
+- id: copy_lamp_button
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: light.living_room_lamp_button
+  condition:
+    condition: template
+    value_template: '{{ states.light.living_room_lamp.state != trigger.to_state.state }}'
+  action:
+    - service: light.toggle
+      entity_id: light.living_room_lamp
 
 # - id: test1
 #   initial_state: 'on'

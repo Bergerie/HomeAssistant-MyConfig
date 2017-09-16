@@ -5,70 +5,26 @@ homeassistant:
   elevation: 408
   unit_system: metric
   time_zone: Europe/Prague
-  customize: !include automation/customize.yaml
-  packages: !include_dir_named packages/
+  customize: !include customize.yaml
+  packages: !include_dir_named components/
 
 frontend:
   themes: !include_dir_merge_named themes/
+  extra_html_url:
+    - /local/custom_ui/state-card-custom-ui.html
 
 http:
 updater:
   include_used_components: true
+
 sun:
 config:
 # python_scripts:
 
-recorder:
-  # Delete events and states older than 30 days
-  purge_days: 30
+automation: !include automations.yaml
+script: !include scripts.yaml
+group: !include_dir_merge_named groups/
 
-history:
-  exclude:
-    entities:
-      - sensor.since_last_boot
-      - sensor.since_last_boot_templated
-      - sensor.living_temp_updated
-      - binary_sensor.pir_livingroom
-      - sensor.tv_mode
-      - sensor.clientraw_wind_direction
-      - persistent_notification.invalid_config
-    domains:
-      - group
-      - updater
-      - script
-      - input_slider
-      - automation
-
-logbook:
-  exclude:
-    entities:
-      - sensor.since_last_boot
-      - sensor.since_last_boot_templated
-      - sensor.living_temp_updated
-      - sensor.ram_use
-      - sensor.cpu_use
-      - automation.in_temp_changed
-      - binary_sensor.pir_livingroom
-      - sensor.clientraw_wind_direction
-      - binary_sensor.octoprint
-      - media_player.spotify
-    domains:
-      - sun
-      - updater
-      - octoprint
-
-logger:
- default: warning
- # logs:
-    # homeassistant.components.mysensors: debug
-    # mysensors.mysensors: debug
-    # homeassistant.components.rflink: debug
-    # custom_components.sensor.attributes: debug
-    # homeassistant.components.device_tracker: debug
-
-#################################
-###       COMPONENTS          ###
-#################################
 mqtt:
   broker: localhost
   port: 1883
@@ -80,41 +36,5 @@ device_tracker:
   - platform: nmap_tracker
     hosts: 192.168.1.1/24
     home_interval: 600
-  # - platform: tplink
-  #   host: 192.168.1.1
-  #   username: !secret router_username
-  #   password: !secret router_password
 
 lirc:
-
-notify:
-  - name: pushbullet
-    platform: pushbullet
-    api_key: !secret pushbullet_api
-
-influxdb:
-  username: !secret influxdb_username
-  password: !secret influxdb_password
-  include:
-    entities:
-      - sensor.speedtest_download
-      - sensor.speedtest_upload
-      - sensor.ram_use
-      - sensor.cpu_use
-      - sensor.myslipo_1_0
-      - sensor.myslipo_2_0
-      - sensor.myslipo_3_0
-      - sensor.myslipo_4_0
-      - sensor.clientraw_temperature_c
-      - sensor.clientraw_humidex_c
-      - sensor.clientraw_pressure
-      - sensor.clientraw_daily_rain
-      - sensor.kitchen_temp_batteries
-      - sensor.living_temp_batteries
-      - sensor.bedroom_temp_batteries
-      - sensor.palm_moisture
-      - sensor.palm_conductivity
-      - sensor.palm_light_intensity
-
-automation: !include automation/automations.yaml
-

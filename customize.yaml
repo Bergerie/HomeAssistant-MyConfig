@@ -1,0 +1,261 @@
+group.lazygardener:
+  order: 1
+
+group.livingroom:
+  order: 2
+
+group.bedroom:
+  order: 3
+
+group.kitchen:
+  order: 4
+
+group.room:
+  order: 5
+
+group.hall:
+  order: 6
+
+group.other:
+  order: 7
+
+script.bedroom_pc_off:
+  friendly_name: Vypnout počítač v ložnici
+  icon: mdi:laptop-off
+
+switch.socket_table:
+  friendly_name: Zásuvka u počítače
+  icon: mdi:power-socket-eu
+
+switch.prusa_power:
+  friendly_name: 3D tiskárna
+  icon: mdi:printer-3d
+  custom_ui_state_card: state-card-custom-ui
+  confirm_controls_show_lock: true
+
+switch.internet_nexus5:
+  assumed_state: false
+  icon: "mdi:cellphone-android"
+
+sensor.clientraw_temperature_c:
+  friendly_name: Teplota
+
+sensor.clientraw_humidex_c:
+  friendly_name: Pocitová teplota
+
+sensor.clientraw_humidity:
+  friendly_name: Vlhkost
+  icon: mdi:water-percent
+
+sensor.clientraw_pressure:
+  friendly_name: Tlak
+  icon: mdi:trending-up
+
+sensor.clientraw_wind_direction:
+  friendly_name: Směr větru
+  icon: mdi:subdirectory-arrow-right
+
+sensor.clientraw_wind_gust_kmh:
+  friendly_name: Nárazový vítr
+  icon: mdi:weather-windy
+
+sensor.clientraw_wind_speed_kmh:
+  friendly_name: Rychlost větru
+  icon: mdi:weather-windy-variant
+
+sensor.clientraw_dewpoint_c:
+  friendly_name: Rosný bod
+  icon: mdi:weather-fog
+
+sensor.clientraw_daily_rain:
+  friendly_name: Dnes napršelo
+  icon: mdi:weather-rainy
+
+sensor.yr_precipitation:
+  friendly_name: Předpoveď deště
+  icon: mdi:weather-rainy
+
+script.restart:
+  friendly_name: Restartovat systém
+  icon: mdi:restart
+
+sensor.speedtest_ping:
+  friendly_name: 'Ping'
+  icon: mdi:clock-fast
+
+sensor.speedtest_download:
+  friendly_name: 'Download'
+  icon: mdi:download
+
+sensor.speedtest_upload:
+  friendly_name: 'Upload'
+  icon: mdi:upload
+
+sensor.ram_use:
+  friendly_name: Využito paměti
+  icon: mdi:memory
+
+sensor.cpu_use:
+  friendly_name: Využití procesoru
+  icon: mdi:matrix
+
+sensor.disk_use_:
+  friendly_name: Využité místo
+  icon: mdi:sd
+
+# device_tracker.bedroom_pc:
+#   # custom_ui_state_card: state-card-custom-ui
+#   # show_last_changed: true
+
+switch.lazygardener_herbs_template:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+  icon: mdi:leaf
+
+switch.lazygardener_fruit_template:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+  icon: mdi:food-apple
+
+switch.lazygardener_flowers_template:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+  icon: mdi:flower
+
+switch.lazygardener_veg_template:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+  icon: mdi:carrot
+
+switch.lazygardener_shade_flowers_template:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+  icon: mdi:gate
+
+switch.lazygardener_all:
+  icon: mdi:water-pump
+
+input_slider.lazygardener_herbs_duration:
+  icon: mdi:timer
+
+input_slider.lazygardener_fruit_duration:
+  icon: mdi:timer
+
+input_slider.lazygardener_flowers_duration:
+  icon: mdi:timer
+
+input_slider.lazygardener_veg_duration:
+  icon: mdi:timer
+
+input_slider.lazygardener_shade_flowers_duration:
+  icon: mdi:timer
+
+light.bedroom:
+  friendly_name: "Hlavní světlo"
+  custom_ui_state_card: state-card-custom-ui
+  state_card_mode: break-slider
+  stretch_slider: true
+
+light.bedroom_lamp:
+  friendly_name: "Lampa"
+  custom_ui_state_card: state-card-custom-ui
+  state_card_mode: break-slider
+  stretch_slider: true
+
+light.hall_coat_hook:
+  friendly_name: "Věšák na bundy"
+    
+light.hall_dryer:
+  friendly_name: "Sušák"
+
+light.hall_shoes:
+  friendly_name: "Kumbál na boty"
+
+light.hall_closets:
+  friendly_name: "Skříně"
+
+light.kitchen:
+  friendly_name: "Hlavní světlo"
+  custom_ui_state_card: state-card-custom-ui
+  state_card_mode: break-slider
+  stretch_slider: true
+
+light.living_room:
+  friendly_name: "Hlavní světlo"
+  custom_ui_state_card: state-card-custom-ui
+  state_card_mode: break-slider
+  stretch_slider: true
+
+light.living_room_lamp:
+  friendly_name: "Lampa"
+
+light.room: 
+  friendly_name: "Hlavní světlo"
+  custom_ui_state_card: state-card-custom-ui
+  state_card_mode: break-slider
+  stretch_slider: true
+
+media_player.lg_tv_remote:
+  friendly_name: Televize
+
+sensor.plant1_moisture:
+  friendly_name: 'Vlhost půdy'
+  icon: mdi:water-percent
+
+sensor.plant1_conductivity:
+  friendly_name: 'Hnojivo'
+  icon: mdi:test-tube
+
+sensor.plant1_light_intensity:
+  friendly_name: Světelné podmínky
+  icon: mdi:white-balance-sunny
+
+sensor.myslipo_1_0:
+  friendly_name: 'Teploměr obývák'
+
+sensor.myslipo_2_0:
+  friendly_name: 'Teploměr ložnice'
+
+sensor.myslipo_3_0:
+  friendly_name: 'Teploměr kuchyně'
+
+sensor.myslipo_4_0:
+  friendly_name: 'Teploměr pokojíček'
+
+binary_sensor.myslipo_reed_6_1:
+  friendly_name: 'Dveře skříň 2'
+
+binary_sensor.myslipo_reed_5_2:
+  friendly_name: 'Dveře skříň 1'
+
+sensor.octoprint_current_state:
+  friendly_name: Status
+  icon: mdi:printer-3d
+
+sensor.octoprint_actual_tool0_temp:
+  friendly_name: Aktuální teplota trysky
+
+sensor.octoprint_target_tool0_temp:
+  friendly_name: Požadovaná teplota trysky
+
+sensor.octoprint_actual_bed_temp:
+  friendly_name: Aktuální teplota podložky
+
+sensor.octoprint_target_bed_temp:
+  friendly_name: Požadovaná teplota podložky
+
+binary_sensor.octoprint_printing_error:
+  friendly_name: Chyba tisku
+  icon: mdi:alert-octagon
+
+automation.konec_3d_tisku:
+  icon: mdi:printer-3d
+  
+automation.chyba_3d_tisku:
+  icon: mdi:printer-3d
+
+automation.automaticke_nocni_svetlo:
+  icon: mdi:weather-night
+
+automation.vypnout_svetla_pri_vychodu_slunce:
+  icon: mdi:weather-sunset-up

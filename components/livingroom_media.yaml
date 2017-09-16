@@ -1,6 +1,3 @@
-################################################################
-# COMPONENTS
-################################################################
 media_player:
   - platform: kodi
     host: !secret kodi_ip
@@ -36,24 +33,3 @@ shell_command:
   tv_mode_tv: 'curl -X POST -H "Content-type: application/json" -d "{\"state\":\"tv\"}" "http://localhost:8123/api/states/sensor.tv_mode"'
   av_state_on: 'curl -X POST -H "Content-type: application/json" -d "{\"state\":\"on\"}" "http://localhost:8123/api/states/sensor.av_state"'
   av_state_off: 'curl -X POST -H "Content-type: application/json" -d "{\"state\":\"off\"}" "http://localhost:8123/api/states/sensor.av_state"'
-
-################################################################
-# CUSTOMIZE
-################################################################
-
-homeassistant:
-  customize:
-    media_player.lg_tv_remote:
-      friendly_name: Televize
-
-################################################################
-# GROUPS
-################################################################
-
-################################################################
-# SCENES
-################################################################
-
-################################################################
-# SCRIPTS
-################################################################

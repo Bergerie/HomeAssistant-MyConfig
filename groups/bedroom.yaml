@@ -1,0 +1,36 @@
+bedroom:
+  view: yes
+  name: Ložnice
+  entities:
+    - sensor.myslipo_2_0
+    - group.bedroom_lights
+    - group.bedroom_pc
+    - media_player.spotify
+    - group.octoprint
+
+bedroom_pc:
+  name: Ovládaní
+  control: hidden
+  entities:
+    - switch.socket_table
+    - switch.prusa_power
+    - script.bedroom_pc_off
+
+bedroom_lights:
+  name: Světla
+  entities:
+    - light.bedroom
+    - light.bedroom_lamp
+
+octoprint:
+  name: OctoPrint
+  control: hidden
+  entities:
+    - automation.konec_3d_tisku
+    - automation.chyba_3d_tisku
+    - sensor.octoprint_current_state
+    - sensor.octoprint_actual_bed_temp
+    - sensor.octoprint_target_bed_temp
+    - sensor.octoprint_actual_tool0_temp
+    - sensor.octoprint_target_tool0_temp
+    - binary_sensor.octoprint_printing_error

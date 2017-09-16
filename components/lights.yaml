@@ -1,0 +1,46 @@
+rflink:
+  port: /dev/serial0
+
+light:
+  - platform: rflink
+    devices:
+      newkaku_0059f642_c:
+        name: living_room_lamp_button
+        aliases:
+          - newkaku_004c7daa_3
+      newkaku_0059f642_b:
+        name: living_room
+        aliases:
+          - newkaku_004c7daa_2
+      newkaku_004c7daa_d:
+        name: hall_closets
+      newkaku_00940f7e_a:
+        name: hall_shoes
+        aliases:
+          - newkaku_004c7daa_a
+      newkaku_0006090a_b:
+        name: room
+        aliases:
+          - newkaku_004c7daa_9
+      newkaku_004c7daa_4:
+        name: kitchen
+      newkaku_0093ca12_a:
+        name: bedroom
+        aliases:
+          - newkaku_004c7daa_5
+          - newkaku_004c7daa_c
+      newkaku_004c7daa_b:
+        name: bedroom_lamp
+      newkaku_004c7daa_7:
+        name: hall_coat_hook
+      newkaku_004c7daa_8:
+        name: hall_dryer
+
+  - platform: mqtt
+    name: living_room_lamp
+    state_topic: "living/lamp/relay/0"
+    command_topic: "living/lamp/relay/0/set"
+    qos: 1
+    payload_on: "1"
+    payload_off: "0"
+    optimistic: false

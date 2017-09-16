@@ -1,0 +1,207 @@
+bedroom_pc_off:
+  sequence:
+    - service: shell_command.bedroom_pc_shutdown
+    - service: shell_command.bedroom_pc_wifi_shutdown
+    - service: switch.turn_off
+      data:
+        entity_id: switch.socket_table
+
+hifi_power:
+  sequence:
+    - service: broadlink.send_packet_192_168_1_119
+      data:
+        packet: 'JgAgAQABGIkUMhQPFDITEBQPFDIUDxQyExAUMhMQFDITMhQQEzIUEBMQExATMxMyFDITEBQPFBATMhQyExAUEBMQEzIUMhQyEwADawABGIkTMhQQEzIUEBMQEzIUEBMyFBATMhQPFDIUMhMQFDITEBMQFA8UMhQyEzIUEBMQExAUMhMyFBATEBMQFDITMhQyFAADagABGIkTMhQQEzIUEBMQEzIUEBMyFBATMhQQEzIUMhMQEzMTEBMQExATMxMzEzIUEBIREhETMxIzExESERIREzMSMxMzEwADagABFowSMxMRETQTEBISETQTERIzExASNBIREzMSNBIREjMTERIRERISNBIzEzMTEBMRERISNBIzEhETERESETQTMxMzEgANBQAAAAAAAAAA'
+
+hifi_input_dvd:
+  sequence:
+    - service: broadlink.send_packet_192_168_1_119
+      data:
+        packet: 'JgCEAxQyFA8UMhQPFA8UEBMQFDITEBMyFBATMhQyFDITMhQQEwADawABGIkUMhMQFDITEBMQFDITEBQyExATMhQQEzIUMhQPFDIUDxQyExAUMhMQFA8UDxQQEzIUEBMyFBATMhQyEzIUMhQPFAADagABGIkUMhMQFDITEBMQFDITEBQyExATMhQQEzIUMhQPFDIUDxQyExAUMhMQFA8UEBMQEzIUEBMyFBATMhQyEzIUMhQPFAADagABGIkUMhQPFDITEBQPFDIUDxQyFA8UMhMQFDITMhQQEzIUDxQyFA8UMhQPFBATEBMQFDITEBQxFBATMhQyFDITMhQQEwADagABGIkUMhQPFDITEBQPFDIUDxQyFA8UMhMQFDITMhQQEzIUEBMyFA8UMhQPFBATEBMQFDITEBQyExATMhQyFDITMhQQEwADawABGIkUMhMQFDITEBQPFDITEBQyExAUMhMQEzIUMhQPFDIUDxQyFA8UMhMQFA8UEBMQEzIUEBMyFBATMhQyFDEUMhQPFAADagABGIkUMhMQFDITEBQPFDITEBQyExAUMhMQEzIUMhQPFDIUDxQyFA8UMhMQFA8UEBMQEzIUEBMyFBATMhQyFDITMhQPFAADagABGIkUMhQPFDIUDxQPFDIUDxQyFA8UMhMQFDITMhQQEzIUEBMyFA8UMhQPFBATEBMQFDITEBQyExATMhQyFDITMhQQEwADagABGIkUMhQPFDIUDxQPFDIUDxQyFA8UMhMQFDITMhQQEzIUEBMyFA8UMhQPFBATEBMQFDITEBQyExATMhQyFDITMhQQEwADawABGIkUMhMQFDITEBQPFDIUDxQyExAUMhMQFDITMhQPFDIUDxQyFA8UMhQPFA8UEBMQEzIUEBMyFBATMhQyFDITMhQQEwADagABGIkUMhMQFDITEBQPFDIUDxQyExAUMhMQFDITMhQPFDIUDxQyFA8UMhQPFA8UEBMQEzIUEBMyFBATMhQyFDITMhQQEwADagABGYgUMhQPFDIUDxQQEzIUDxQyFA8UMhQPFDITMhQQEzIUEBMyFBATMhQPFBATEBQPFDITEBQyExAUMhMyFDIUMhMQEwADagABGYgUMhQPFDIUDxQQEzIUDxQyFA8UMhQPFDITMhQQEzIUEBMyFBATMhQPFBATEBQPFDITEBQyExAUMhMyFDIUMRQQEwANBQAAAAA='
+
+hifi_input_tv:
+  sequence:
+    - service: broadlink.send_packet_192_168_1_119
+      data:
+        packet: 'JgCEAxMQFA8UMhQyExATEBQPFBATMhQyFA8UEBMyFDITMhQyFAADagABGIkUMhMQEzMTEBMQFDITEBMzExATMhQQEzIUMhQPFDIUDxQPFBATMhQyFA8UEBMQExAUMhMyFBATEBMyFDIUMhMyFAADagABGIkUMhMQFDITEBMQFDITEBQyExATMhQQEzIUMhQPFDIUDxQQExATMhQyFA8UEBMQExAUMhMyFBATEBMyFDIUMhMyFAADawABGIkTMhQQEzIUEBMQEzIUEBMyFBATMhQQEzIUMhMQFDITEBQPFBATMhQyExAUDxQQExATMhQyFA8UEBMyFDITMhQyFAADagABGIkTMhQQEzIUEBMQEzMTEBMyFBATMhQQEzIUMhMQFDITEBQPFBATMhQyExAUDxQQExATMhQyFA8UEBMyFDIUMRQyFAADagABGIkUMhMQFDITEBQPFDITEBQyExAUMhMQEzMTMhQQEzIUDxQQExATMhQyFA8UEBMQExAUMhMyFBATEBMzEzIUMhMzEwADagABGIkUMhMQFDITEBQPFDITEBQyExAUMhMQEzMTMhQQEzIUDxQQExATMhQyFA8UEBMQExAUMhMyFBATEBQyEzIUMhMzEwADawABGIkUMhMQEzMTEBMQFDITEBQyExATMhQQEzIUMhQPFDIUDxQPFBATMhQyFA8UEBMQExAUMhMyFBATEBMyFDIUMhMyFAADagABGIkUMhMQFDITEBMQFDITEBQyExATMhQQEzIUMhQPFDIUDxQQExATMhQyFA8UEBMQExAUMhMyFBATEBMyFDIUMhMyFAADagABGIkUMhQPFDITEBQPFDIUDxQyFA8UMhMQFDITMhQQEzIUEBMQExAUMhMyFBATEBMQFA8UMhQyExATEBQyEzIUMhQyEwADagABGIkUMhQPFDIUDxQPFDIUDxQyFA8UMhMQFDITMhQQEzIUEBMQExAUMhMyFBATEBMQFA8UMhQyExATEBQyEzIUMhQyEwADawABGIkUMhMQFDITEBQPFDITEBQyExAUMhMQEzMTMhQQEzIUDxQQExATMhQyFA8UEBMQExAUMhMyFBATEBMzEzIUMhMzEwADagABGIkUMhMQFDITEBQPFDITEBQyExAUMhMQFDITMhQQEzIUDxQQExATMhQyFA8UEBMQExAUMhMyFBATEBQyEzIUMhMzEwANBQAAAAA='
+
+hifi_input_bt:
+  sequence:
+    - service: broadlink.send_packet_192_168_1_119
+      data:
+        packet: 'JgCwAQABGIkUMhMQFDITEBMQFDITEBQyExATMxMQEzIUMhQPFDIUDxQQExATEBQPFDITEBQPFBATMhQyEzIUMhQQEzIUMhMyFAADagABGYkTMhQQEzIUDxQQEzIUEBMyFA8UMhQPFDIUMhMQEzMTEBMQFA8UEBMQEzIUEBMQExAUMhMyFDIUMhMQFDITMhQyFAADagABGIkTMhQQEzIUEBMQFDITEBMyFBATMhQQEzIUMhQPFDITEBQPFBATEBMQFDITEBQPFA8UMhQyEzIUMhQPFDIUMhMyFAADagABGIkTMxMQEzIUEBMQFDITEBMyFBATMhQQEzIUMhQPFDITEBQPFBATEBMQFDITEBQPFA8UMhQyEzIUMhQPFDIUMhMyFAADagABGYkTMhQQEzIUEBMQEzIUEBMyFBATMhQPFDIUMhMQFDITEBMQFA8UEBMQEzIUEBMQFA8UMhMyFDIUMhMQFDITMhQyFAADaQABGYkTMhQQEzIUEBMQEzIUEBMyFBATMhQPFDIUMhMQFDITEBMQFA8UEBMQEzIUEBMQFA8UMhMzEzIUMhMQFDITMhQyFAANBQAAAAAAAAAA'
+
+hifi_volume_up:
+  sequence:
+    - service: broadlink.send_packet_192_168_1_119
+      data:
+        packet: 'JgBAAgABGIkUMhQPFDITEBQPFDIUDxQyExAUMhMQFDITMhQQEzIUEBMQEzIUEBMyFBATEBMQFA8UMhMQFDITEBQyEzIUMhQyEwADawABGIkTMxMQEzIUEBMQEzMTEBMyFBATMhQQEzIUMhMQFDITEBQPFDITEBQyExAUDxQQExATMhQQEzIUEBMyFDITMxMyFAADagABGIkUMhMQFDITEBMQFDITEBQyExATMxMQEzIUMhQQEzIUDxQQEzIUEBMyFA8UEBMQExAUMhMQEzMTEBMyFDIUMhMzEwADagABGIkUMhMQEzMTEBMQFDITEBQyExATMxMQEzIUMhQPFDIUDxQQEzIUEBMyFA8UEBMQExAUMhMQEzMTEBMzEzIUMhMyFAADawABGIkTMxMQEzIUEBMQEzMTEBMyFBATMhQQEzIUMhMQFDITEBQPFDITEBQyExAUDxQQExATMhQQEzIUEBMyFDITMxMyFAADagABGIkTMxMQEzIUEBMQEzMTEBMzExATMhQQEzIUMhMQFDITEBQPFDITEBQyExAUDxQQExATMhQQEzIUEBMyFDITMxMyFAADagABGIkUMhMQFDITEBMQFDITEBQyExATMxMQEzMTMhQQEzIUDxQQEzIUEBMyFA8UEBMQExAUMhMQEzMTEBMzEzIUMhMzEwADagABGIkUMhMQFDITEBMQFDITEBQyExATMxMQEzMTMhQPFDIUDxQQEzIUEBMyFA8UEBMQExAUMhMQEzMTEBMyFDIUMhMyFAANBRQQEzIUEBMy'
+
+hifi_volume_down:
+  sequence:
+    - service: broadlink.send_packet_192_168_1_119
+      data:
+        packet: 'JgCwAQABGIkUMhMQFDITEBQPFDITEBQyExAUMhMQEzMTMhQQEzIUEBMyFDITEBMzExATEBQQExATEBMQFDITEBQyEzIUMhQyEwADawABGIkTMxMQEzIUEBMQEzMTEBMyFBATMhQQEzIUMhQPFDITEBQyEzIUEBMyFBATEBMQFA8UEBMQEzIUEBMyFDITMxMyFAADagABGIkUMhMQFDITEBMQFDITEBQyExATMxMQEzMTMhQPFDIUDxQyEzMTEBMzExATEBQPFBATEBMQFDITEBMzEzIUMhMyFAADagABGIkUMhMQEzMTEBMQFDITEBMzExATMxMQEzIUMhQPFDIUDxQyEzMTEBMyFBATEBMQFBATEBMQEzMTEBMyFDIUMhMyFAADawABGIkTMxMQEzIUEBMQEzMTEBMyFBATMhQQEzIUMhMQFDITEBQyEzIUEBMyFBATEBMQExAUEBMQEzIUEBMyFDITMxMyFAADagABGIkTMhQQEzIUEBMQEzMTEBMyFBATMhQQEzIUMhMQFDITEBQyEzIUEBMyFBATEBMQExAUEBMQEzIUEBMyFDITMxMyFAANBQAAAAAAAAAA'
+
+hifi_mute:
+  sequence:
+    - service: broadlink.send_packet_192_168_1_119
+      data:
+        packet: 'JgAgAQABGIkTMhQQEzIUEBMQEzIUEBMyFBATMhQQEzIUMhMQFDITEBMQFDITEBQPFDITEBQQExATMhQQEzIUMhMQFDITMhQyFAADaQABGIkUMhQPFDITEBQQEzIUEBMyFA8UMhMQFDITMxMQEzIUEBMQEzMTEBMQFDITEBMQFBATMhQPFDITMxMQEzMTMhQyEwADawABGIkTMxMQEzMTEBMQEzMTEBMzExATMhQQEzIUMhMQFDITEBQPFDIUDxQQEzIUEBMQExATMxMQEzIUMhQPFDITMxMyFAADagABGIkUMhQPFDIUDxQQEzIUEBMyFA8UMhMQFDITMxMQEzIUEBMQEzMTEBMQFDITEBMQFBATMhQPFDIUMhMQEzMTMhQyEwANBQAAAAAAAAAA'
+
+lazygardener_all:
+  sequence:
+    - condition: state
+      entity_id: input_boolean.lazygardener_watering
+      state: 'off'
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_herbs
+
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+    - delay: '00:{{ (states.input_slider.lazygardener_herbs_duration.state | int ) -1}}:00'
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_fruit
+    - delay: '00:{{ states.input_slider.lazygardener_fruit_duration.state | int }}:00'
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_flowers
+    - delay: '00:{{ states.input_slider.lazygardener_flowers_duration.state | int }}:00'
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_veg
+    - delay: '00:{{ states.input_slider.lazygardener_veg_duration.state | int }}:00'
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_herbs
+    - delay: '00:01:00'
+    - service: switch.turn_off
+      data:
+        entity_id: switch.lazygardener_herbs
+
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+lazygardener_herbs:
+  sequence:
+    - condition: state
+      entity_id: input_boolean.lazygardener_watering
+      state: 'off'
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_herbs
+
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+    - delay: '00:{{ states.input_slider.lazygardener_herbs_duration.state | int }}:00'
+    - service: switch.turn_off
+      data:
+        entity_id: switch.lazygardener_herbs
+
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+lazygardener_fruit:
+  sequence:
+    - condition: state
+      entity_id: input_boolean.lazygardener_watering
+      state: 'off'
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_fruit
+
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+    - delay: '00:{{ states.input_slider.lazygardener_fruit_duration.state | int }}:00'
+    - service: switch.turn_off
+      data:
+        entity_id: switch.lazygardener_fruit
+
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+lazygardener_flowers:
+  sequence:
+    - condition: state
+      entity_id: input_boolean.lazygardener_watering
+      state: 'off'
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_flowers
+
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+    - delay: '00:{{ states.input_slider.lazygardener_flowers_duration.state | int }}:00'
+    - service: switch.turn_off
+      data:
+        entity_id: switch.lazygardener_flowers
+
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+lazygardener_veg:
+  sequence:
+    - condition: state
+      entity_id: input_boolean.lazygardener_watering
+      state: 'off'
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_veg
+
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+    - delay: '00:{{ states.input_slider.lazygardener_veg_duration.state | int }}:00'
+    - service: switch.turn_off
+      data:
+        entity_id: switch.lazygardener_veg
+
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.lazygardener_watering
+
+lazygardener_shade_flowers:
+  sequence:
+    - condition: state
+      entity_id: input_boolean.lazygardener_watering
+      state: 'off'
+
+    - service: switch.turn_on
+      data:
+        entity_id: switch.lazygardener_shade_flowers
+
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.lazygardener_watering
+        
+    - delay: '00:{{ states.input_slider.lazygardener_shade_flowers_duration.state | int }}:00'
+    - service: switch.turn_off
+      data:
+        entity_id: switch.lazygardener_shade_flowers
+
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.lazygardener_watering

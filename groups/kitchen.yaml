@@ -1,0 +1,11 @@
+kitchen:
+  view: yes
+  name: Kuchyně
+  entities:
+    - group.kitchen_lights
+    - sensor.myslipo_3_0
+
+kitchen_lights:
+  name: Světla
+  entities:
+    - light.kitchen

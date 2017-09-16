@@ -1,0 +1,23 @@
+switch:
+  - platform: mqtt
+    name: "socket_table"
+    command_topic: "bedroom/table-socket/relay/0/set"
+    state_topic: "bedroom/table-socket/relay/0"
+    availability_topic: "bedroom/table-socket/status"
+    payload_on: 1
+    payload_off: 0
+    payload_available: 1
+    payload_not_available: 0
+    optimistic: false
+    qos: 1
+
+media_player:
+  - platform: spotify
+    client_id:  !secret spotify_client
+    client_secret: !secret spotify_secret
+
+shell_command:
+  bedroom_pc_wifi_shutdown: 'curl -k (192.168.1.103:9000/?action=System.Shutdown)'
+  bedroom_pc_wifi_restart: 'curl -k (192.168.1.103:9000/?action=System.Restart)'
+  bedroom_pc_shutdown: 'curl -k (192.168.1.110:9000/?action=System.Shutdown)'
+  bedroom_pc_restart: 'curl -k (192.168.1.110:9000/?action=System.Restart)'

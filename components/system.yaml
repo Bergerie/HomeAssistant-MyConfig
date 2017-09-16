@@ -1,7 +1,3 @@
-################################################################
-# COMPONENTS
-################################################################
-
 sensor:
   - platform: systemmonitor
     resources:
@@ -81,60 +77,4 @@ sensor:
               {{ seconds }} sekund
             {%- endif -%}
           {%- endif -%}
-################################################################
-# CUSTOMIZE
-################################################################
-
-homeassistant:
-  customize:
-    script.restart:
-      friendly_name: Restartovat systém
-      icon: mdi:restart
-
-    sensor.speedtest_ping:
-      friendly_name: 'Ping'
-      icon: mdi:clock-fast
-
-    sensor.speedtest_download:
-      friendly_name: 'Download'
-      icon: mdi:download
-
-    sensor.speedtest_upload:
-      friendly_name: 'Upload'
-      icon: mdi:upload
-
-    sensor.ram_use:
-      friendly_name: Využito paměti
-      icon: mdi:memory
-
-    sensor.cpu_use:
-      friendly_name: Využití procesoru
-      icon: mdi:matrix
-
-    sensor.disk_use_:
-      friendly_name: Využité místo
-      icon: mdi:sd
-
-################################################################
-# GROUPS
-################################################################
-
-group:
-  system:
-    name: Systém
-    entities:
-      - sensor.since_last_boot_templated
-      - sensor.ram_use
-      - sensor.cpu_use
-      - sensor.disk_use_
-      - sensor.speedtest_ping
-      - sensor.speedtest_download
-      - sensor.speedtest_upload
-      
-################################################################
-# SCENES
-################################################################
-
-################################################################
-# SCRIPTS
-################################################################
+          

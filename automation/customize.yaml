@@ -1,5 +1,0 @@
-automation.automaticke_nocni_svetlo:
-  icon: mdi:weather-night
-
-automation.vypnout_svetla_pri_vychodu_slunce:
-  icon: mdi:weather-sunset-up

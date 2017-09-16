@@ -1,0 +1,30 @@
+default_view:
+  name: Obecné
+  view: yes
+  entities:
+    - updater.updater
+    - group.weather
+    - group.plant1_moisture
+      
+weather:
+  name: Počasí
+  entities:
+    - sensor.myslipo_4_0
+    - sensor.clientraw_temperature_c
+    - sensor.clientraw_humidex_c
+    - sensor.clientraw_humidity
+    - sensor.clientraw_pressure
+    - sensor.clientraw_wind_direction
+    - sensor.clientraw_wind_gust_kmh
+    - sensor.clientraw_wind_speed_kmh
+    - sensor.clientraw_dewpoint_c
+    - sensor.clientraw_daily_rain
+    - sensor.yr_precipitation
+
+plant1_moisture:
+  name: Kala
+  entities:  
+    - plant.kala
+    - sensor.plant1_moisture
+    - sensor.plant1_conductivity
+    - sensor.plant1_light_intensity

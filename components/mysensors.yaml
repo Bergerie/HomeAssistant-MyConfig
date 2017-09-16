@@ -1,0 +1,24 @@
+mysensors:
+  gateways:
+    - device: '192.168.1.118'
+      persistence_file: '/home/homeassistant/.homeassistant/components/mysensors.json'
+      tcp_port: 5003
+  optimistic: false
+  persistence: true
+  retain: true
+  version: '2.0'
+
+sensor:
+  - platform: mysensors
+
+  - platform: attributes
+    friendly_name: Baterie
+    attribute: battery_level
+    unit_of_measurement: "%"
+    entities:
+      - sensor.myslipo_1_0
+      - sensor.myslipo_2_0
+      - sensor.myslipo_3_0
+      - sensor.myslipo_4_0
+      - binary_sensor.myslipo_reed_5_2
+      - binary_sensor.myslipo_reed_6_1

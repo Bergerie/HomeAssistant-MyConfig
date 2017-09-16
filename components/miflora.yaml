@@ -1,7 +1,3 @@
-################################################################
-# COMPONENTS
-################################################################
-
 sensor:
   - platform: miflora
     mac: "C4:7C:8D:62:4D:4F"
@@ -58,42 +54,3 @@ plant:
       conductivity: sensor.plant1_conductivity
     min_moisture: 20
     min_conductivity: 300
-
-################################################################
-# CUSTOMIZE
-################################################################
-
-homeassistant:
-  customize:
-    sensor.plant1_moisture:
-      friendly_name: 'Vlhost půdy'
-      icon: mdi:water-percent
-
-    sensor.plant1_conductivity:
-      friendly_name: 'Hnojivo'
-      icon: mdi:test-tube
-
-    sensor.plant1_light_intensity:
-      friendly_name: Světelné podmínky
-      icon: mdi:white-balance-sunny
-
-################################################################
-# GROUPS
-################################################################
-
-group:
-  plant1_moisture:
-    name: Kala
-    entities:  
-      - plant.kala
-      - sensor.plant1_moisture
-      - sensor.plant1_conductivity
-      - sensor.plant1_light_intensity
-
-################################################################
-# SCENES
-################################################################
-
-################################################################
-# SCRIPTS
-################################################################
